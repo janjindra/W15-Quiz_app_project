@@ -44,8 +44,8 @@ render(){
 
     <div>
     <QuizSelector quizzes={this.state.quizzes} onQuizSelected={this.handleQuizSelected}></QuizSelector>
-    <CreatedQuizQuestion quiz={selectedQuiz}/>
-    <QuizDetail questions={this.state.questions}/>
+      <CreatedQuizQuestion quiz={selectedQuiz}/>
+    <QuizDetail questions={this.state.questions} quiz={selectedQuiz}/>
     </div>
 
   )

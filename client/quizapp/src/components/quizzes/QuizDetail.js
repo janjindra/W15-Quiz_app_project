@@ -4,10 +4,8 @@ import QuizQuestion from './QuizQuestion.js';
 
 const QuizDetail = (props) => {
 
-	if(props.questions.length === 0 ) {
-		return (
-			<p>Loading....</p>
-		)
+	if(props.quiz) {
+		 return "." } else {
 	}
 
 	const questions = props.questions.map((question, index) => {
@@ -27,4 +25,5 @@ const QuizDetail = (props) => {
 
 	)
 }
+
  export default QuizDetail;

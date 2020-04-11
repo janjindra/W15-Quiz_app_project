@@ -12,7 +12,7 @@ const MainContainer = () => {
 
       <Switch>
 
-      <Route path="/questions" component={QuizzesContainer}/>
+      <Route path="/quizzes" component={QuizzesContainer}/>
 
       </Switch>
 
