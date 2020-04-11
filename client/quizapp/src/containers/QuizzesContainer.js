@@ -22,9 +22,10 @@ class QuizzesContainer extends Component{
     request.get('/api/questions')
     .then((data) => {
       this.setState({questions: data})
-    })
+    });
 
-    request.get('/api/quizzes')
+    const requestb = new Request();
+    requestb.get('/api/quizzes')
     .then((data) => {
       this.setState({quizzes: data})
     })
@@ -37,7 +38,7 @@ class QuizzesContainer extends Component{
 
 render(){
 
-  const selectedQuiz = this.state.quizzes.find(quiz => quiz.quizName===
+  const selectedQuiz = this.state.quizzes.find(quiz => quiz.name===
       this.state.selectedQuizName)
   return (
 

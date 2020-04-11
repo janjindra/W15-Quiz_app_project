@@ -11,16 +11,13 @@ function handleChange(event){
 }
 
 
-
-
   return (
     <div>
     <select id="quiz-selector" defaultValue="default" onChange={handleChange}>
       <option disabled value="default">Choose a Quiz...</option>
       {options}
     </select>
-
-
+    
     </div>
 
 
