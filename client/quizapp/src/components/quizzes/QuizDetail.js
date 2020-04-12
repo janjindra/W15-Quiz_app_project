@@ -20,9 +20,10 @@ const QuizDetail = (props) => {
 
 	return (
 		<ul className="component-list">
-			{questions}
+
 		</ul>
 
+	// {questions}
 	)
 }
 

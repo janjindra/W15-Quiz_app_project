@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import isEmpty from '../../helpers/is-empty';
 import M from 'materialize-css';
+import ResultSummary from '../results/ResultSummary';
 
 class CreatedQuizQuestion extends Component{
   constructor(props){
@@ -24,17 +25,25 @@ class CreatedQuizQuestion extends Component{
 
   static getDerivedStateFromProps(props, state){
 
-         if(props.quiz  ){
-             return{
+         if(props.quiz) {
+           if (!isEmpty(state.nextQuestion)){
+             return {
                  questions: props.quiz.questions,
+                 numberOfQuestions: props.quiz.questions.length,
                  currentQuestion: props.quiz.questions[state.currentQuestionIndex],
                  nextQuestion: props.quiz.questions[state.currentQuestionIndex+1],
                  previousQuestion: props.quiz.questions[state.currentQuestionIndex-1],
                  answer: props.quiz.questions[state.currentQuestionIndex].correctAnswer
              }
+           }
+           else {
+             window.location = '/results'
+           }
          }
-         return null;
-     }
+         else {
+           return null;
+         }
+       }
 
   componentDidMount(){
 
@@ -50,6 +59,10 @@ class CreatedQuizQuestion extends Component{
         this.wrongAnswer();
       }
     }
+
+  handleButtonClick(){
+
+  }
 
 
   correctAnswer(){
@@ -84,55 +97,61 @@ class CreatedQuizQuestion extends Component{
     if(!this.props.quiz) { return "No created quiz selected." }
 
 
-    const questions = this.props.quiz.questions.map((question, index) => {
-      if (question.type === "boolean") {
-
-        //this is a true/false type of questions.
-        return (
-          <li key={index} className="component-item">
-          <div className="component">
-          <Fragment>
-          <h1>
-          {question.questionName}
-          </h1>
-          <p>Option A: {question.incorrectAnswers[0]}</p>
-          <p>Option B-correct: {question.correctAnswer}</p>
-          </Fragment>
-          </div>
-          </li>
-        )
-
-      }
-      else {
-        //this is a multiple answer type of questions.
-        return (
-
-          <li key={index} className="component-item">
-          <div className="component">
-          <Fragment>
-          <h1>
-          {question.questionName}
-          </h1>
-          <p>Option A: {question.incorrectAnswers[0]}</p>
-          <p>Option B: {question.incorrectAnswers[1]}</p>
-          <p>Option C: {question.incorrectAnswers[2]}</p>
-          <p>Option D-correct: {question.correctAnswer}</p>
-          </Fragment>
-          </div>
-          </li>
-        )
-
-      }
-
-    })
+    // const questions = this.props.quiz.questions.map((question, index) => {
+    //   if (question.type === "boolean") {
+    //
+    //     //this is a true/false type of questions.
+    //     return (
+    //       <li key={index} className="component-item">
+    //       <div className="component">
+    //       <Fragment>
+    //       <h1>
+    //       {question.questionName}
+    //       </h1>
+    //       <p>Option A: {question.incorrectAnswers[0]}</p>
+    //       <p>Option B-correct: {question.correctAnswer}</p>
+    //       </Fragment>
+    //       </div>
+    //       </li>
+    //     )
+    //
+    //   }
+    //   else {
+    //     //this is a multiple answer type of questions.
+    //     return (
+    //
+    //       <li key={index} className="component-item">
+    //       <div className="component">
+    //       <Fragment>
+    //       <h1>
+    //       {question.questionName}
+    //       </h1>
+    //       <p>Option A: {question.incorrectAnswers[0]}</p>
+    //       <p>Option B: {question.incorrectAnswers[1]}</p>
+    //       <p>Option C: {question.incorrectAnswers[2]}</p>
+    //       <p>Option D-correct: {question.correctAnswer}</p>
+    //       </Fragment>
+    //       </div>
+    //       </li>
+    //     )
+    //
+    //   }
+    //
+    // })
 
 
     const {currentQuestion} = this.state;
 
+
+
+
+
+
     return (
 
 
-      <div>
+      <Fragment>
+      <h4>Question {this.state.numberOfAnsweredQuestions+1}/{this.state.numberOfQuestions}</h4>
 
       <h4>{currentQuestion.questionName}</h4>
       <p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[0]}</p>
@@ -140,12 +159,21 @@ class CreatedQuizQuestion extends Component{
       <p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[2]}</p>
       <p onClick={this.handleOptionClick}>{currentQuestion.correctAnswer}</p>
 
+      <div>
+        <button type="button" onClick={this.handleButtonClick}>Previous</button>
+        <button type="button" onClick={this.handleButtonClick}>Quit</button>
+        <button type="button" onClick={this.handleButtonClick}>Next</button>
+      </div>
+
+      <ResultSummary numberOfAnsweredQuestions={this.state.numberOfAnsweredQuestions}
+                            correctAnswers={this.state.correctAnswers}
+                            wrongAnswers={this.state.wrongAnswers}/>
+
+
       <ul className="component-list">
 
-
-
       </ul>
-      </div>
+      </Fragment>
 // {questions}
     )
   }

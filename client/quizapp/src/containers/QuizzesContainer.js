@@ -43,11 +43,12 @@ render(){
       this.state.selectedQuizName)
   return (
 
-    <div>
+    <Fragment>
+    <h1 id="h1-center">Play a Quiz now!</h1>
     <QuizSelector quizzes={this.state.quizzes} onQuizSelected={this.handleQuizSelected}></QuizSelector>
     <CreatedQuizQuestion quiz={selectedQuiz}/>
     <QuizDetail questions={this.state.questions} quiz={selectedQuiz}/>
-    </div>
+    </Fragment>
 
   )
 }

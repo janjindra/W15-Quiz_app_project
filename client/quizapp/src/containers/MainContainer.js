@@ -5,6 +5,7 @@ import QuizzesContainer from './QuizzesContainer';
 import CreateQuizContainer from './CreateQuizContainer';
 import CreateQuestionContainer from './CreateQuestionContainer';
 import ProfileContainer from './ProfileContainer';
+import ResultSummary from '../components/results/ResultSummary';
 
 
 const MainContainer = () => {
@@ -16,6 +17,7 @@ const MainContainer = () => {
       <Switch>
       <Route path="/profile" component={ProfileContainer} />
       <Route path="/quizzes" component={QuizzesContainer}/>
+      <Route path="/results" component={ResultSummary}/>
       </Switch>
 
 
