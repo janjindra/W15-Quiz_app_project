@@ -14,10 +14,6 @@ const MainContainer = () => {
       <Fragment>
       <NavBar/>
       <Switch>
-      <Route path="/quizzes" component={QuizzesContainer} />
-      <Route path="/createaquiz" component={CreateQuizContainer} />
-      <Route path="/createaquestion" component={CreateQuestionContainer} />
-      // <Route path="/results" component={CreateQuizContainer} />
       <Route path="/profile" component={ProfileContainer} />
       </Switch>
 

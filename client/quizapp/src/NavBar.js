@@ -18,7 +18,7 @@ const NavBar = (props) => {
     <a href="/results">Results</a>
     </li>
     <li className="navLink">
-    <a href="/profile">Profile</a>
+    <a href="/profile/new">Profile</a>
     </li>
     </ul>
     </header>
