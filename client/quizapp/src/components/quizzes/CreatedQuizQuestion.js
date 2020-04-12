@@ -20,6 +20,8 @@ class CreatedQuizQuestion extends Component{
       wrongAnswers: 0
     }
     this.handleOptionClick = this.handleOptionClick.bind(this);
+    this.handleNextButtonClick = this.handleNextButtonClick.bind(this);
+    this.handlePreviousButtonClick = this.handlePreviousButtonClick.bind(this);
   };
 
 
@@ -60,7 +62,27 @@ class CreatedQuizQuestion extends Component{
       }
     }
 
-  handleButtonClick(){
+
+  handleNextButtonClick(){
+    if (this.state.nextQuestion !== undefined){
+      this.setState(prevState=>({
+        currentQuestionIndex: prevState.currentQuestionIndex+1
+      }))
+    }
+  }
+
+  handlePreviousButtonClick(){
+    if (this.state.previousQuestion !== undefined){
+      this.setState(prevState=>({
+        currentQuestionIndex: prevState.currentQuestionIndex-1
+      }))
+    }
+  }
+
+  handleQuitButtonClick(){
+    if (window.confirm("Are you sure you want to quit?")) {
+      window.location = '/quizzes';
+    }
 
   }
 
@@ -151,7 +173,7 @@ class CreatedQuizQuestion extends Component{
 
 
       <Fragment>
-      <h4>Question {this.state.numberOfAnsweredQuestions+1}/{this.state.numberOfQuestions}</h4>
+      <h4>Question {this.state.currentQuestionIndex+1}/{this.state.numberOfQuestions}</h4>
 
       <h4>{currentQuestion.questionName}</h4>
       <p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[0]}</p>
@@ -160,9 +182,9 @@ class CreatedQuizQuestion extends Component{
       <p onClick={this.handleOptionClick}>{currentQuestion.correctAnswer}</p>
 
       <div>
-        <button type="button" onClick={this.handleButtonClick}>Previous</button>
-        <button type="button" onClick={this.handleButtonClick}>Quit</button>
-        <button type="button" onClick={this.handleButtonClick}>Next</button>
+        <button type="button" onClick={this.handlePreviousButtonClick}>Previous</button>
+        <button type="button" onClick={this.handleQuitButtonClick}>Quit</button>
+        <button type="button" onClick={this.handleNextButtonClick}>Next</button>
       </div>
 
       <ResultSummary numberOfAnsweredQuestions={this.state.numberOfAnsweredQuestions}
