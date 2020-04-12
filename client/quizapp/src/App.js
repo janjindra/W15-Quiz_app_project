@@ -1,12 +1,12 @@
 import React from 'react';
+import MainContainer from './containers/MainContainer'
 
-import './App.css';
 
 function App() {
   return (
     <div>
 
-<h2>Hello!</h2>
+    <MainContainer />
 
     </div>
   );
