@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import isEmpty from '../../helpers/is-empty';
+import M from 'materialize-css';
 
 class CreatedQuizQuestion extends Component{
   constructor(props){
@@ -17,12 +18,13 @@ class CreatedQuizQuestion extends Component{
       correctAnswers: 0,
       wrongAnswers: 0
     }
-
+    this.handleOptionClick = this.handleOptionClick.bind(this);
   };
 
 
   static getDerivedStateFromProps(props, state){
-         if(props.quiz){
+
+         if(props.quiz  ){
              return{
                  questions: props.quiz.questions,
                  currentQuestion: props.quiz.questions[state.currentQuestionIndex],
@@ -41,10 +43,41 @@ class CreatedQuizQuestion extends Component{
     }
   }
 
-  handleOptionClick(e){
-    console.log('option clicked');
+  handleOptionClick(event){
+    if (event.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()){
+      this.correctAnswer();
+    } else {
+        this.wrongAnswer();
+      }
+    }
+
+
+  correctAnswer(){
+    M.toast({
+      html: 'Correct Answer!',
+      classes: 'toast-valid',
+      displayLength: 1500
+    });
+    this.setState(prevState => ({
+      score: prevState.score +1,
+      correctAnswers: prevState.correctAnswers+1,
+      currentQuestionIndex: prevState.currentQuestionIndex+1,
+      numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions+1
+    }))
   }
 
+  wrongAnswer(){
+    M.toast({
+      html: 'Wrong Answer...',
+      classes: 'toast-invalid',
+      displayLength: 1500
+    });
+    this.setState(prevState => ({
+      wrongAnswers: prevState.wrongAnswers+1,
+      currentQuestionIndex: prevState.currentQuestionIndex+1,
+      numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions+1
+    }))
+  }
 
 
   render(){
@@ -94,28 +127,26 @@ class CreatedQuizQuestion extends Component{
     })
 
 
-
     const {currentQuestion} = this.state;
 
     return (
 
 
-
-
-
       <div>
 
       <h4>{currentQuestion.questionName}</h4>
-      <p onClick={this.handleOptionClick}>Option A: {currentQuestion.incorrectAnswers[0]}</p>
-      <p onClick={this.handleOptionClick}>Option B: {currentQuestion.incorrectAnswers[1]}</p>
-      <p onClick={this.handleOptionClick}>Option C: {currentQuestion.incorrectAnswers[2]}</p>
-      <p onClick={this.handleOptionClick}>Option D-correct: {currentQuestion.correctAnswer}</p>
+      <p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[0]}</p>
+      <p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[1]}</p>
+      <p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[2]}</p>
+      <p onClick={this.handleOptionClick}>{currentQuestion.correctAnswer}</p>
 
       <ul className="component-list">
-      {questions}
+
+
+
       </ul>
       </div>
-
+// {questions}
     )
   }
 
