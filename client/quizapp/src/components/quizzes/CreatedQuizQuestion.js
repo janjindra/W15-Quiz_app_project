@@ -31,6 +31,7 @@ class CreatedQuizQuestion extends Component{
                  answer: props.quiz.questions[state.currentQuestionIndex].correctAnswer
              }
          }
+         return null;
      }
 
   componentDidMount(){
@@ -38,6 +39,10 @@ class CreatedQuizQuestion extends Component{
       if(this.props.quiz){
         this.getDerivedStateFromProps(this.props, this.state);
     }
+  }
+
+  handleOptionClick(e){
+    console.log('option clicked');
   }
 
 
@@ -101,10 +106,10 @@ class CreatedQuizQuestion extends Component{
       <div>
 
       <h4>{currentQuestion.questionName}</h4>
-      <p>Option A: {currentQuestion.incorrectAnswers[0]}</p>
-      <p>Option B: {currentQuestion.incorrectAnswers[1]}</p>
-      <p>Option C: {currentQuestion.incorrectAnswers[2]}</p>
-      <p>Option D-correct: {currentQuestion.correctAnswer}</p>
+      <p onClick={this.handleOptionClick}>Option A: {currentQuestion.incorrectAnswers[0]}</p>
+      <p onClick={this.handleOptionClick}>Option B: {currentQuestion.incorrectAnswers[1]}</p>
+      <p onClick={this.handleOptionClick}>Option C: {currentQuestion.incorrectAnswers[2]}</p>
+      <p onClick={this.handleOptionClick}>Option D-correct: {currentQuestion.correctAnswer}</p>
 
       <ul className="component-list">
       {questions}
