@@ -1,19 +1,22 @@
-import React, {Component, Fragment} from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import React, {Component} from 'react';
 import CreateQuestionForm from '../components/createQuestions/CreateQuestionForm';
 import Request from '../helpers/request';
 
 
 class CreateQuestionContainer extends Component{
-  constructor(props){
-    super(props)
+
+  handlePost(question){
+    const request = new Request();
+    request.post('/api/questions', question)
+    .then( () => {
+      window.loaction = '/createQuestions'
+    })
   }
 
   render(){
 
-
     return (
-      <CreateQuestionForm/>
+      <CreateQuestionForm onCreate={this.handlePost}/>
     )
   }
 }
