@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
+import MainContainer from './containers/MainContainer'
 
-import './App.css';
 
-function App() {
-  return (
-    <div>
 
-<h2>Hello!</h2>
+class App extends Component {
 
-    </div>
-  );
+  render() {
+    return (
+      <div>
+      <MainContainer />
+      </div>
+    );
+  }
 }
+
 
 export default App;
