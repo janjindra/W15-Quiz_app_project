@@ -5,6 +5,7 @@ import QuizSelector from '../components/quizzes/QuizSelector';
 import Request from '../helpers/request';
 import CreatedQuizQuestion from '../components/quizzes/CreatedQuizQuestion';
 
+
 class QuizzesContainer extends Component{
   constructor(props){
     super(props);
@@ -14,8 +15,7 @@ class QuizzesContainer extends Component{
       quizzes: []
     }
     this.handleQuizSelected = this.handleQuizSelected.bind(this);
-
-  }
+  };
 
   componentDidMount(){
     const request = new Request();
@@ -31,6 +31,7 @@ class QuizzesContainer extends Component{
     })
   }
 
+
   handleQuizSelected(quizName){
   //save it to the state
   this.setState({selectedQuizName: quizName})
@@ -44,7 +45,7 @@ render(){
 
     <div>
     <QuizSelector quizzes={this.state.quizzes} onQuizSelected={this.handleQuizSelected}></QuizSelector>
-      <CreatedQuizQuestion quiz={selectedQuiz}/>
+    <CreatedQuizQuestion quiz={selectedQuiz}/>
     <QuizDetail questions={this.state.questions} quiz={selectedQuiz}/>
     </div>
 
