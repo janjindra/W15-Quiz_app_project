@@ -1,15 +1,26 @@
+<<<<<<< HEAD
 import React from 'react';
+=======
+import React, { Component } from 'react';
+>>>>>>> develop
 import MainContainer from './containers/MainContainer'
 
 
-function App() {
-  return (
-    <div>
 
+<<<<<<< HEAD
     <MainContainer />
+=======
+class App extends Component {
+>>>>>>> develop
 
-    </div>
-  );
+  render() {
+    return (
+      <div>
+      <MainContainer />
+      </div>
+    );
+  }
 }
+
 
 export default App;
