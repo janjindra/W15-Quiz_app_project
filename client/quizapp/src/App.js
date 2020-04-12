@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-
-
 import MainContainer from './containers/MainContainer'
+
+
 
 class App extends Component {
 
@@ -13,5 +13,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;
