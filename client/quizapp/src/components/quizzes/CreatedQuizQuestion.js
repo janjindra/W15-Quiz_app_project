@@ -1,6 +1,5 @@
 import React, {Component, Fragment} from 'react';
 import isEmpty from '../../helpers/is-empty';
-import M from 'materialize-css';
 import ResultSummary from '../results/ResultSummary';
 
 

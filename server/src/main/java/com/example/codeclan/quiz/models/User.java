@@ -25,16 +25,16 @@ public class User {
     @Column(name="url")
     private String url;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "user")
-    List<Quiz> quizes;
+//    @JsonBackReference
+//    @OneToMany(mappedBy = "user")
+//    List<Quiz> quizes;
 
     public User(String firstName, String lastName, String email, String url) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.url = url;
-        this.quizes = new ArrayList<>();
+//        this.quizes = new ArrayList<>();
 
 
     }
@@ -42,9 +42,9 @@ public class User {
     public User() {
     }
 
-    public void addQuizToUser(Quiz quiz){
-        this.quizes.add(quiz);
-    }
+//    public void addQuizToUser(Quiz quiz){
+//        this.quizes.add(quiz);
+//    }
 
     public Long getId() {
         return id;
@@ -78,13 +78,13 @@ public class User {
         this.email = email;
     }
 
-    public List<Quiz> getQuizes() {
-        return quizes;
-    }
-
-    public void setQuizes(List<Quiz> quizes) {
-        this.quizes = quizes;
-    }
+//    public List<Quiz> getQuizes() {
+//        return quizes;
+//    }
+//
+//    public void setQuizes(List<Quiz> quizes) {
+//        this.quizes = quizes;
+//    }
 
     public String getUrl() {
         return url;

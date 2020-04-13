@@ -69,13 +69,13 @@ public class DataLoader implements ApplicationRunner {
         User jan = new User("Jan", "Jindra", "jan.jindra@codeclan.com", "https://www.google.com/url?sa=i&url=https%3A%2F%2Fpjtpartners.com%2Fpeople%2Fpeter-kelly&psig=AOvVaw2IYSzWqn7QGIxsnIkfu-Yx&ust=1586612528394000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCICN9rT-3egCFQAAAAAdAAAAABAH");
         userRepository.save(peter);
 
-        Quiz quizA = new Quiz("Peter\'s Quiz", 2, 0, peter);
+        Quiz quizA = new Quiz("Peter\'s Quiz");
         quizRepository.save(quizA);
 
-        peter.addQuizToUser(quizA);
-        jan.addQuizToUser(quizA);
-        userRepository.save(peter);
-        userRepository.save(jan);
+//        peter.addQuizToUser(quizA);
+//        jan.addQuizToUser(quizA);
+//        userRepository.save(peter);
+//        userRepository.save(jan);
 
         quizA.addQuestionToQuiz(question1);
         quizA.addQuestionToQuiz(question2);
@@ -1297,7 +1297,7 @@ public class DataLoader implements ApplicationRunner {
         userRepository.save(allQuestions);
 
 
-        Quiz quizALL = new Quiz("Random Questions", 2, 2, allQuestions);
+        Quiz quizALL = new Quiz("Random Questions");
         quizRepository.save(quizALL);
 
 

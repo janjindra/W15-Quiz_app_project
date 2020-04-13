@@ -9,18 +9,13 @@ class CreateQuizzesForm extends Component{
     this.state = {
         showQuestions: false,
         quiz: {
-          name: "",
-          numberOfQuestions: 0
+          name: ""
         }
-
       }
-
-
    this.handleChange = this.handleChange.bind(this);
    this.handleSubmit = this.handleSubmit.bind(this);
 
   }
-
 
   handleChange(event){
     let propertyName = event.target.name;
@@ -32,7 +27,6 @@ class CreateQuizzesForm extends Component{
   handleSubmit(event){
     event.preventDefault();
     this.props.onCreate(this.state.quiz)
-    this.props.onCreate(this.state.question)
   }
 
 
@@ -53,18 +47,6 @@ class CreateQuizzesForm extends Component{
     )
   }
 
-
-
-
 }
 
-
 export default CreateQuizzesForm;
-
-
-
-// <div>
-//     {Array.from({ length: numberOfQuestions }, (value, index) => (
-//       <Questions key={index} questionNumber={index + 1} />
-//     ))}
-//   </div>
