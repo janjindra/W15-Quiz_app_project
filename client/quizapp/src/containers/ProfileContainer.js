@@ -27,7 +27,7 @@ class ProfileContainer extends Component{
     const request = new Request();
     request.post('/api/users', user) //is it profile???
     .then( () => {
-      window.location = '/profile/new'
+      window.location = '/profile'
     })
   }
 
@@ -54,7 +54,7 @@ class ProfileContainer extends Component{
       <Router>
       <Fragment>
       <Switch>
-      <Route exact path = '/profile/new' render={() => {
+      <Route exact path = '/profile' render={() => {
         return <MyProfileForm onCreate={this.handlePost} />
       }} />
       </Switch>
