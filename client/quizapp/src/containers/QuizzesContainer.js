@@ -37,14 +37,6 @@ class QuizzesContainer extends Component{
     });
   }
 
-  getLatestUser(){
-    this.setState({latestUser: this.state.users[-1]})
-    // for (var user of this.state.users){
-    //   if (this.state.users.indexOf(user) === this.state.users.length-1){
-    //     this.setState({latestUser: user})
-    //   }
-    // }
-  }
 
 
   handleQuizSelected(quizName){
@@ -57,14 +49,14 @@ render(){
   const selectedQuiz = this.state.quizzes.find(quiz => quiz.name===
       this.state.selectedQuizName)
 
-
   return (
 
     <Fragment>
 
-    <QuizSelector quizzes={this.state.quizzes} onQuizSelected={this.handleQuizSelected}></QuizSelector>
-    <CreatedQuizQuestion users={this.state.users} quiz={selectedQuiz}/>
-    <QuizDetail questions={this.state.questions} quiz={selectedQuiz}/>
+      { this.state.selectedQuizName==="" ? <QuizSelector quizzes={this.state.quizzes} onQuizSelected={this.handleQuizSelected}/> : null }
+      <CreatedQuizQuestion users={this.state.users} quiz={selectedQuiz}/>
+      <QuizDetail questions={this.state.questions} quiz={selectedQuiz}/>
+
     </Fragment>
 
   )

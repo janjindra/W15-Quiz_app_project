@@ -18,7 +18,6 @@ class CreatedQuizQuestion extends Component{
       correctAnswers: 0,
       wrongAnswers: 0,
       latestUser: {},
-
     }
 
     this.handleOptionClick = this.handleOptionClick.bind(this);
@@ -33,7 +32,6 @@ class CreatedQuizQuestion extends Component{
       if (!isEmpty(state.nextQuestion)){
 
         return {
-
           questions: props.quiz.questions,
           numberOfQuestions: props.quiz.questions.length,
           currentQuestion: props.quiz.questions[state.currentQuestionIndex],
@@ -47,9 +45,7 @@ class CreatedQuizQuestion extends Component{
         if (isEmpty(state.nextQuestion)){
           // window.alert("The quiz has ended");
           // window.location = '/quizzes/results';
-
           return null;
-
         }
       }
     }
@@ -59,21 +55,17 @@ class CreatedQuizQuestion extends Component{
   }
 
   componentDidMount(){
-
     if(this.props.quiz){
       this.getDerivedStateFromProps(this.props, this.state);
-
     }
   }
-
 
   //the function sortList sorts/randomizes the 4 options for each question.
   sortList() {
     var list, i, switching, b, shouldSwitch;
     list = document.getElementById("id01");
     switching = true;
-    /* Make a loop that will continue until
-    no switching has been done: */
+    /* Make a loop that will continue until no switching has been done: */
     while (switching) {
       // start by saying: no switching is done:
       switching = false;
@@ -82,19 +74,15 @@ class CreatedQuizQuestion extends Component{
       for (i = 0; i < (b.length - 1); i++) {
         // start by saying there should be no switching:
         shouldSwitch = false;
-        /* check if the next item should
-        switch place with the current item: */
+        /* check if the next item should switch place with the current item: */
         if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
-          /* if next item is alphabetically
-          lower than current item, mark as a switch
-          and break the loop: */
+          /* if next item is alphabetically lower than current item, mark as a switch and break the loop: */
           shouldSwitch = true;
           break;
         }
       }
       if (shouldSwitch) {
-        /* If a switch has been marked, make the switch
-        and mark the switch as done: */
+        /* If a switch has been marked, make the switch and mark the switch as done: */
         b[i].parentNode.insertBefore(b[i + 1], b[i]);
         switching = true;
       }
@@ -102,18 +90,13 @@ class CreatedQuizQuestion extends Component{
   }
 
 
-
   handleOptionClick(event){
     if (event.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()){
       this.sortList();
       this.correctAnswer();
-
-
     } else {
       this.sortList();
       this.wrongAnswer();
-
-
     }
   }
 
@@ -142,11 +125,6 @@ class CreatedQuizQuestion extends Component{
 
 
   correctAnswer(){
-    // M.toast({
-    //   html: 'Correct Answer!',
-    //   classes: 'toast-valid',
-    //   displayLength: 1500
-    // });
     this.setState(prevState => ({
       score: prevState.score +1,
       correctAnswers: prevState.correctAnswers+1,
@@ -156,11 +134,6 @@ class CreatedQuizQuestion extends Component{
   }
 
   wrongAnswer(){
-    // M.toast({
-    //   html: 'Wrong Answer...',
-    //   classes: 'toast-invalid',
-    //   displayLength: 1500
-    // });
     this.setState(prevState => ({
       wrongAnswers: prevState.wrongAnswers+1,
       currentQuestionIndex: prevState.currentQuestionIndex+1,
@@ -169,94 +142,50 @@ class CreatedQuizQuestion extends Component{
   }
 
 
-  // endGame() {
-  //   alert('Quiz has ended!');
-  //   const {state} = this;
-  //   const playerStats = {
-  //     score: state.score,
-  //     numberOfQuestions: state.numberOfQuestions,
-  //     numberOfAnsweredQuestions: state.numberOfAnsweredQuestions,
-  //     correctAnswers: state.correctAnswers,
-  //     wrongAnswers: state.wrongAnswers
-  //   }
-  //   console.log(playerStats);
-  //   setTimeout(()=>{
-  //      window.location = '/quizzes/results'
-  //
-  //   }, 1000);
-  // }
-
-  // handleFinish(){
-  // const playerStats = {
-  //   score: this.state.score,
-  //   numberOfQuestions: this.state.numberOfQuestions,
-  //   numberOfAnsweredQuestions: this.state.numberOfAnsweredQuestions,
-  //   correctAnswers: this.state.correctAnswers,
-  //   wrongAnswers: this.state.wrongAnswers
-  // }
-  // console.log(playerStats);
-  // window.open('/quizzes/results')
-  // // history.push('/quizzes/results');
-  // // window.location.href = '/quizzes/results'
-  // // window.location.reload(false);
-  // }
-
-
   render(){
     if(!this.props.quiz) { return "Please select a quiz above." }
 
     const {currentQuestion } = this.state;
-    
+
     if (this.state.currentQuestionIndex<this.state.numberOfQuestions) {
 
       if (this.state.currentQuestion.incorrectAnswers.length !=1){
 
         // this is multiple choice answer
         return (
-
           <div className="options">
-          <h4>Question {this.state.currentQuestionIndex+1}/{this.state.numberOfQuestions}</h4>
+            <h4>Question {this.state.currentQuestionIndex+1}/{this.state.numberOfQuestions}</h4>
 
-          <h4>{currentQuestion.questionName}</h4>
-          <ul id="id01">
-          <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[0]}</p></li>
-          <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[1]}</p></li>
-          <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[2]}</p></li>
-          <li><p onClick={this.handleOptionClick}>{currentQuestion.correctAnswer}</p></li>
-          </ul>
+            <h4>{currentQuestion.questionName}</h4>
+            <ul id="id01">
+              <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[0]}</p></li>
+              <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[1]}</p></li>
+              <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[2]}</p></li>
+              <li><p onClick={this.handleOptionClick}>{currentQuestion.correctAnswer}</p></li>
+            </ul>
 
-          <div>
-          <button type="button" onClick={this.handleQuitButtonClick}>Quit quiz</button>
-          <button type="button" onClick={this.handleNextButtonClick}>Skip this question</button>
-
-
+            <div>
+            <button type="button" onClick={this.handleQuitButtonClick}>Quit quiz</button>
+            <button type="button" onClick={this.handleNextButtonClick}>Skip this question</button>
+            </div>
           </div>
-
-          </div>
-
         )
       }
       else {
 
         //this is true/false choice answer
         return (
-
           <div className="options">
-          <h4>Question {this.state.currentQuestionIndex+1}/{this.state.numberOfQuestions}</h4>
-
-          <h4>{currentQuestion.questionName}</h4>
-          <ul id="id01">
-          <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[0]}</p></li>
-          <li><p onClick={this.handleOptionClick}>{currentQuestion.correctAnswer}</p></li>
-          </ul>
-
-          <div>
-          <button type="button" onClick={this.handleQuitButtonClick}>Quit quiz</button>
-          <button type="button" onClick={this.handleNextButtonClick}>Skip this question</button>
-
-
-          </div>
-
+            <h4>Question {this.state.currentQuestionIndex+1}/{this.state.numberOfQuestions}</h4>
+            <h4>{currentQuestion.questionName}</h4>
+            <ul id="id01">
+              <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[0]}</p></li>
+              <li><p onClick={this.handleOptionClick}>{currentQuestion.correctAnswer}</p></li>
+            </ul>
+            <div>
+              <button type="button" onClick={this.handleQuitButtonClick}>Quit quiz</button>
+              <button type="button" onClick={this.handleNextButtonClick}>Skip this question</button>
+            </div>
           </div>
 
         )
@@ -282,9 +211,6 @@ class CreatedQuizQuestion extends Component{
 
       )
     }
-
-
-
 
   }
 
