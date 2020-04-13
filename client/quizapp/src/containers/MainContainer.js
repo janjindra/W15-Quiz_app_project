@@ -16,9 +16,9 @@ const MainContainer = () => {
       <Switch>
 
       <Route path="/profile" component={ProfileContainer} />
-      <Route exact path="/quizzes" component={QuizzesContainer}/>
-      <Route path="/quizzes/results" component={ResultSummary}/>
-
+      <Route path="/quizzes" component={QuizzesContainer}/>
+      <Route path="/createQuestions" component={CreateQuestionContainer}/>
+      <Route path="/createQuizzes" component={CreateQuizContainer}/> // comment back in.
       </Switch>
 
 
