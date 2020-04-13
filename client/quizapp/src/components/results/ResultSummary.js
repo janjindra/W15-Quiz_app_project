@@ -29,16 +29,18 @@ console.log(this.props);
       <h2>Your Result: {Math.round((parseInt(this.props.correctAnswers)/parseInt(this.props.numberOfAnsweredQuestions))*100)}%</h2>
 
       <ul>
-      <h4>Your Score: {this.props.correctAnswers}/{this.props.numberOfQuestions}</h4>
-      <h4>Total Number of Questions: {this.props.numberOfQuestions}</h4>
-      <h4>Number of Attempted Questions: {this.props.numberOfAnsweredQuestions}</h4>
-      <h4>Number of Correct Answers: {this.props.correctAnswers}</h4>
-      <h4>Number of Wrong Answers: {this.props.wrongAnswers}</h4>
-      <h4>Number of Skipped Answers: {parseInt(this.props.numberOfQuestions)-parseInt(this.props.numberOfAnsweredQuestions)}</h4>
+      <li><p>Your Score: {this.props.correctAnswers}/{this.props.numberOfQuestions}</p></li>
+      <li><p>Total Number of Questions: {this.props.numberOfQuestions}</p></li>
+      <li><p>Number of Attempted Questions: {this.props.numberOfAnsweredQuestions}</p></li>
+      <li><p>Number of Correct Answers: {this.props.correctAnswers}</p></li>
+      <li><p>Number of Wrong Answers: {this.props.wrongAnswers}</p></li>
+      <li><p>Number of Skipped Answers: {parseInt(this.props.numberOfQuestions)-parseInt(this.props.numberOfAnsweredQuestions)}</p></li>
+
       </ul>
 
-      <button onClick={this.handleAgainButton} type="button">PLAY AGAIN</button>
-
+      <button onClick={this.handleAgainButton} type="button"><h2>Play Again</h2></button>
+      <button onClick={this.handleAgainButton} type="button"><h2>Home</h2></button>
+      <br></br><br></br>
       </Fragment>
 
     )
