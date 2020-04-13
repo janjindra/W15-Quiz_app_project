@@ -5,13 +5,20 @@ class ResultSummary extends Component{
   constructor(props){
     super(props);
     this.state = {
+      numberOfQuestions: 0
+      // correctAnswers: 0,
+      // wrongAnswers: 0,
+      // numberOfAnsweredQuestions: 0,
+      // score: 0
     }
-
   };
 
 
-  render(){
 
+
+
+  render(){
+console.log(this.props);
     // const questions = this.props.questions.map((question, index) => {
   	// 	return (
   	// 		<li key={index} className="component-item">

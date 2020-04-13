@@ -2,6 +2,9 @@ import React, {Component, Fragment} from 'react';
 import isEmpty from '../../helpers/is-empty';
 import M from 'materialize-css';
 import ResultSummary from '../results/ResultSummary';
+import history from '../../history';
+import createHistory from 'history/createBrowserHistory';
+import {Link} from 'react-router-dom';
 
 class CreatedQuizQuestion extends Component{
   constructor(props){
@@ -19,38 +22,47 @@ class CreatedQuizQuestion extends Component{
       correctAnswers: 0,
       wrongAnswers: 0
     }
+
     this.handleOptionClick = this.handleOptionClick.bind(this);
     this.handleNextButtonClick = this.handleNextButtonClick.bind(this);
     this.handlePreviousButtonClick = this.handlePreviousButtonClick.bind(this);
+    this.endGame = this.endGame.bind(this);
+    this.handleFinish = this.handleFinish.bind(this);
   };
 
 
   static getDerivedStateFromProps(props, state){
 
-         if(props.quiz) {
-           if (!isEmpty(state.nextQuestion)){
-             return {
-                 questions: props.quiz.questions,
-                 numberOfQuestions: props.quiz.questions.length,
-                 currentQuestion: props.quiz.questions[state.currentQuestionIndex],
-                 nextQuestion: props.quiz.questions[state.currentQuestionIndex+1],
-                 previousQuestion: props.quiz.questions[state.currentQuestionIndex-1],
-                 answer: props.quiz.questions[state.currentQuestionIndex].correctAnswer
-             }
-           }
-           else {
-             window.location = '/results'
-           }
-         }
-         else {
-           return null;
-         }
-       }
+    if(props.quiz) {
+      if (!isEmpty(state.nextQuestion)){
+        return {
+          questions: props.quiz.questions,
+          numberOfQuestions: props.quiz.questions.length,
+          currentQuestion: props.quiz.questions[state.currentQuestionIndex],
+          nextQuestion: props.quiz.questions[state.currentQuestionIndex+1],
+          previousQuestion: props.quiz.questions[state.currentQuestionIndex-1],
+          answer: props.quiz.questions[state.currentQuestionIndex].correctAnswer
+        }
+      }
+      else {
+        if (isEmpty(state.nextQuestion)){
+          // window.alert("The quiz has ended");
+          // window.location = '/quizzes/results';
+
+          return null;
+
+        }
+      }
+    }
+    else {
+      return null;
+    }
+  }
 
   componentDidMount(){
 
-      if(this.props.quiz){
-        this.getDerivedStateFromProps(this.props, this.state);
+    if(this.props.quiz){
+      this.getDerivedStateFromProps(this.props, this.state);
     }
   }
 
@@ -58,9 +70,9 @@ class CreatedQuizQuestion extends Component{
     if (event.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()){
       this.correctAnswer();
     } else {
-        this.wrongAnswer();
-      }
+      this.wrongAnswer();
     }
+  }
 
 
   handleNextButtonClick(){
@@ -80,10 +92,9 @@ class CreatedQuizQuestion extends Component{
   }
 
   handleQuitButtonClick(){
-    if (window.confirm("Are you sure you want to quit?")) {
+    if(window.confirm("Are you sure you want to quit?")){
       window.location = '/quizzes';
     }
-
   }
 
 
@@ -98,7 +109,7 @@ class CreatedQuizQuestion extends Component{
       correctAnswers: prevState.correctAnswers+1,
       currentQuestionIndex: prevState.currentQuestionIndex+1,
       numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions+1
-    }))
+    }));
   }
 
   wrongAnswer(){
@@ -111,66 +122,53 @@ class CreatedQuizQuestion extends Component{
       wrongAnswers: prevState.wrongAnswers+1,
       currentQuestionIndex: prevState.currentQuestionIndex+1,
       numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions+1
-    }))
+    }));
   }
+
+
+endGame() {
+  alert('Quiz has ended!');
+  const {state} = this;
+  const playerStats = {
+    score: state.score,
+    numberOfQuestions: state.numberOfQuestions,
+    numberOfAnsweredQuestions: state.numberOfAnsweredQuestions,
+    correctAnswers: state.correctAnswers,
+    wrongAnswers: state.wrongAnswers
+  }
+  console.log(playerStats);
+  setTimeout(()=>{
+     window.location = '/quizzes/results'
+
+  }, 1000);
+}
+
+handleFinish(){
+const playerStats = {
+  score: this.state.score,
+  numberOfQuestions: this.state.numberOfQuestions,
+  numberOfAnsweredQuestions: this.state.numberOfAnsweredQuestions,
+  correctAnswers: this.state.correctAnswers,
+  wrongAnswers: this.state.wrongAnswers
+}
+console.log(playerStats);
+window.open('/quizzes/results')
+// history.push('/quizzes/results');
+// window.location.href = '/quizzes/results'
+// window.location.reload(false);
+}
 
 
   render(){
     if(!this.props.quiz) { return "No created quiz selected." }
 
-
-    // const questions = this.props.quiz.questions.map((question, index) => {
-    //   if (question.type === "boolean") {
-    //
-    //     //this is a true/false type of questions.
-    //     return (
-    //       <li key={index} className="component-item">
-    //       <div className="component">
-    //       <Fragment>
-    //       <h1>
-    //       {question.questionName}
-    //       </h1>
-    //       <p>Option A: {question.incorrectAnswers[0]}</p>
-    //       <p>Option B-correct: {question.correctAnswer}</p>
-    //       </Fragment>
-    //       </div>
-    //       </li>
-    //     )
-    //
-    //   }
-    //   else {
-    //     //this is a multiple answer type of questions.
-    //     return (
-    //
-    //       <li key={index} className="component-item">
-    //       <div className="component">
-    //       <Fragment>
-    //       <h1>
-    //       {question.questionName}
-    //       </h1>
-    //       <p>Option A: {question.incorrectAnswers[0]}</p>
-    //       <p>Option B: {question.incorrectAnswers[1]}</p>
-    //       <p>Option C: {question.incorrectAnswers[2]}</p>
-    //       <p>Option D-correct: {question.correctAnswer}</p>
-    //       </Fragment>
-    //       </div>
-    //       </li>
-    //     )
-    //
-    //   }
-    //
-    // })
+    const {currentQuestion, time } = this.state;
 
 
-    const {currentQuestion} = this.state;
-
-
-
-
+if (this.state.currentQuestionIndex<this.state.numberOfQuestions) {
 
 
     return (
-
 
       <Fragment>
       <h4>Question {this.state.currentQuestionIndex+1}/{this.state.numberOfQuestions}</h4>
@@ -182,22 +180,39 @@ class CreatedQuizQuestion extends Component{
       <p onClick={this.handleOptionClick}>{currentQuestion.correctAnswer}</p>
 
       <div>
-        <button type="button" onClick={this.handlePreviousButtonClick}>Previous</button>
-        <button type="button" onClick={this.handleQuitButtonClick}>Quit</button>
-        <button type="button" onClick={this.handleNextButtonClick}>Next</button>
+      <button type="button" onClick={this.handleQuitButtonClick}>Quit quiz</button>
+      <button type="button" onClick={this.handleNextButtonClick}>Skip this question</button>
+      <button type="button" onClick={this.handleFinish}>FINISH</button>
+      <Link to="/quizzes/results">FinishAAA</Link>
       </div>
 
-      <ResultSummary numberOfAnsweredQuestions={this.state.numberOfAnsweredQuestions}
-                            correctAnswers={this.state.correctAnswers}
-                            wrongAnswers={this.state.wrongAnswers}/>
 
 
       <ul className="component-list">
 
       </ul>
+
       </Fragment>
-// {questions}
+
     )
+  }
+
+  else {
+  // window.alert("The quiz has ended");
+    return(
+
+    <Fragment>
+    <ResultSummary numberOfAnsweredQuestions={this.state.numberOfAnsweredQuestions}
+    correctAnswers={this.state.correctAnswers}
+    wrongAnswers={this.state.wrongAnswers}
+    numberOfQuestions={this.state.numberOfQuestions}
+    currentQuestionIndex={this.state.currentQuestionIndex}
+    currentQuestion={this.state.currentQuestion}/>
+
+    </Fragment>
+
+    )
+  }
   }
 
 }
