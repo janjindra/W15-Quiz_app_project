@@ -74,26 +74,32 @@ class CreateQuestionForm extends Component{
 
   handleSubmit(event){
     event.preventDefault();
-    this.props.onCreate(this.state.question)
-    this.state.question.incorrectAnswers.push(this.state.incorrect1)
-    this.state.question.incorrectAnswers.push(this.state.incorrect2)
-    this.state.question.incorrectAnswers.push(this.state.incorrect3)
+    if(this.state.multi){
+      this.state.question.incorrectAnswers.push(this.state.incorrect1)
+      this.state.question.incorrectAnswers.push(this.state.incorrect2)
+      this.state.question.incorrectAnswers.push(this.state.incorrect3)
+    } else if
+     (this.state.trueorfalse){
+       this.state.question.incorrectAnswers.push(this.state.incorrect1)
+     }
     this.state.question.quizzes.push(this.state.quiz)
-
+    this.props.onCreate(this.state.question)
     this.setState({
-    incorrect1: "",
-    incorrect2: "",
-    incorrect3: "",
-    quiz: "",
-    question: {
-      category: "",
-      type: "",
-      difficulty: "",
-      questionName: "",
-      correctAnswer: "",
-      incorrectAnswers: [],
-      quizzes: []
-    }})
+      incorrect1: "",
+      incorrect2: "",
+      incorrect3: "",
+      multi: false,
+      trueorfalse: false,
+      quiz: "",
+      question: {
+        category: "",
+        type: "",
+        difficulty: "",
+        questionName: "",
+        correctAnswer: "",
+        incorrectAnswers: [],
+        quizzes: []
+      }})
 }
 
   render(){

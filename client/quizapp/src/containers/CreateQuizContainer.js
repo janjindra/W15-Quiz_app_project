@@ -15,18 +15,12 @@ class CreateQuizContainer extends Component{
     })
   }
 
-  handlePostQuestion(question){
-      const request = new Request();
-      request.post('/api/questions', question)
-      .then( () => {
-        window.location = '/createQuizzes'
-      })
-    }
+
 
   render(){
 
     return(
-      <CreateQuizzesForm onCreate={this.handlePost} onCreate={this.handlePostQuestion} />
+      <CreateQuizzesForm onCreate={this.handlePost} />
     )
   }
 }
