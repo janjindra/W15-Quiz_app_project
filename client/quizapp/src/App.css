@@ -2,6 +2,17 @@
   text-align: center;
 }
 
+.toast-valid{
+  background-color: red;
+  border-radius: 5px;
+
+}
+
+.h1-center{
+  text-align: center;
+}
+
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

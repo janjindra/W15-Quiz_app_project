@@ -9,16 +9,13 @@ const NavBar = (props) => {
     <a href="/quizzes">Quizzes</a>
     </li>
     <li className="navLink">
-    <a href="/createaquiz">Create A Quiz</a>
+    <a href="/createQuizzes">Create A Quiz</a>
     </li>
     <li className="navLink">
-    <a href="/createaquestion">Create A Question</a>
+    <a href="/createQuestions">Create A Question</a>
     </li>
     <li className="navLink">
-    <a href="/results">Results</a>
-    </li>
-    <li className="navLink">
-    <a href="/profile/new">Profile</a>
+    <a href="/profile">Profile</a>
     </li>
     </ul>
     </header>
