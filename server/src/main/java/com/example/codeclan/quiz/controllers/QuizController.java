@@ -2,14 +2,13 @@ package com.example.codeclan.quiz.controllers;
 
 import com.example.codeclan.quiz.models.Question;
 import com.example.codeclan.quiz.models.Quiz;
+import com.example.codeclan.quiz.models.User;
 import com.example.codeclan.quiz.repositories.QuestionRepository;
 import com.example.codeclan.quiz.repositories.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,6 +22,12 @@ public class QuizController {
     @GetMapping
     public ResponseEntity<List<Quiz>> getAllQuizzes(){
         return new ResponseEntity<>(quizRepository.findAll(), HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity postQuiz(@RequestBody Quiz quiz){
+        quizRepository.save(quiz);
+        return new ResponseEntity(quiz, HttpStatus.CREATED);
     }
 
 
