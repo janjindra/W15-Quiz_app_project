@@ -13,11 +13,12 @@ function handleChange(event){
 
   return (
     <div>
+    <h1 id="h1-center">Play a Quiz now!</h1>
     <select id="quiz-selector" defaultValue="default" onChange={handleChange}>
       <option disabled value="default">Choose a Quiz...</option>
       {options}
     </select>
-    
+
     </div>
 
 

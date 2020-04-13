@@ -15,9 +15,6 @@ const NavBar = (props) => {
     <a href="/createaquestion">Create A Question</a>
     </li>
     <li className="navLink">
-    <a href="/results">Results</a>
-    </li>
-    <li className="navLink">
     <a href="/profile/new">Profile</a>
     </li>
     </ul>

@@ -1,5 +1,4 @@
 import React, {Component, Fragment} from 'react';
-// import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import QuizDetail from '../components/quizzes/QuizDetail';
 import QuizSelector from '../components/quizzes/QuizSelector';
 import Request from '../helpers/request';
@@ -10,6 +9,7 @@ class QuizzesContainer extends Component{
   constructor(props){
     super(props);
     this.state = {
+      users: [],
       questions: [],
       selectedQuizName: "",
       quizzes: []
@@ -28,7 +28,22 @@ class QuizzesContainer extends Component{
     requestb.get('/api/quizzes')
     .then((data) => {
       this.setState({quizzes: data})
-    })
+    });
+
+    const requestUser = new Request();
+    requestUser.get('/api/users')
+    .then((data) => {
+      this.setState({users: data})
+    });
+  }
+
+  getLatestUser(){
+    this.setState({latestUser: this.state.users[-1]})
+    // for (var user of this.state.users){
+    //   if (this.state.users.indexOf(user) === this.state.users.length-1){
+    //     this.setState({latestUser: user})
+    //   }
+    // }
   }
 
 
@@ -41,13 +56,14 @@ render(){
 
   const selectedQuiz = this.state.quizzes.find(quiz => quiz.name===
       this.state.selectedQuizName)
+
+
   return (
 
     <Fragment>
-    <h1 id="h1-center">Play a Quiz now!</h1>
-  
+
     <QuizSelector quizzes={this.state.quizzes} onQuizSelected={this.handleQuizSelected}></QuizSelector>
-    <CreatedQuizQuestion quiz={selectedQuiz}/>
+    <CreatedQuizQuestion users={this.state.users} quiz={selectedQuiz}/>
     <QuizDetail questions={this.state.questions} quiz={selectedQuiz}/>
     </Fragment>
 

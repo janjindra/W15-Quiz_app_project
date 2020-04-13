@@ -2,9 +2,7 @@ import React, {Component, Fragment} from 'react';
 import isEmpty from '../../helpers/is-empty';
 import M from 'materialize-css';
 import ResultSummary from '../results/ResultSummary';
-import history from '../../history';
-import createHistory from 'history/createBrowserHistory';
-import {Link} from 'react-router-dom';
+
 
 class CreatedQuizQuestion extends Component{
   constructor(props){
@@ -20,14 +18,15 @@ class CreatedQuizQuestion extends Component{
       currentQuestionIndex: 0,
       score: 0,
       correctAnswers: 0,
-      wrongAnswers: 0
+      wrongAnswers: 0,
+      latestUser: {}
     }
 
     this.handleOptionClick = this.handleOptionClick.bind(this);
     this.handleNextButtonClick = this.handleNextButtonClick.bind(this);
     this.handlePreviousButtonClick = this.handlePreviousButtonClick.bind(this);
-    this.endGame = this.endGame.bind(this);
-    this.handleFinish = this.handleFinish.bind(this);
+    // this.endGame = this.endGame.bind(this);
+    // this.handleFinish = this.handleFinish.bind(this);
   };
 
 
@@ -41,7 +40,8 @@ class CreatedQuizQuestion extends Component{
           currentQuestion: props.quiz.questions[state.currentQuestionIndex],
           nextQuestion: props.quiz.questions[state.currentQuestionIndex+1],
           previousQuestion: props.quiz.questions[state.currentQuestionIndex-1],
-          answer: props.quiz.questions[state.currentQuestionIndex].correctAnswer
+          answer: props.quiz.questions[state.currentQuestionIndex].correctAnswer,
+          latestUser: props.users[props.users.length-1]
         }
       }
       else {
@@ -63,8 +63,10 @@ class CreatedQuizQuestion extends Component{
 
     if(this.props.quiz){
       this.getDerivedStateFromProps(this.props, this.state);
-    }
+
   }
+}
+
 
   handleOptionClick(event){
     if (event.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()){
@@ -99,11 +101,11 @@ class CreatedQuizQuestion extends Component{
 
 
   correctAnswer(){
-    M.toast({
-      html: 'Correct Answer!',
-      classes: 'toast-valid',
-      displayLength: 1500
-    });
+    // M.toast({
+    //   html: 'Correct Answer!',
+    //   classes: 'toast-valid',
+    //   displayLength: 1500
+    // });
     this.setState(prevState => ({
       score: prevState.score +1,
       correctAnswers: prevState.correctAnswers+1,
@@ -113,11 +115,11 @@ class CreatedQuizQuestion extends Component{
   }
 
   wrongAnswer(){
-    M.toast({
-      html: 'Wrong Answer...',
-      classes: 'toast-invalid',
-      displayLength: 1500
-    });
+    // M.toast({
+    //   html: 'Wrong Answer...',
+    //   classes: 'toast-invalid',
+    //   displayLength: 1500
+    // });
     this.setState(prevState => ({
       wrongAnswers: prevState.wrongAnswers+1,
       currentQuestionIndex: prevState.currentQuestionIndex+1,
@@ -126,43 +128,43 @@ class CreatedQuizQuestion extends Component{
   }
 
 
-endGame() {
-  alert('Quiz has ended!');
-  const {state} = this;
-  const playerStats = {
-    score: state.score,
-    numberOfQuestions: state.numberOfQuestions,
-    numberOfAnsweredQuestions: state.numberOfAnsweredQuestions,
-    correctAnswers: state.correctAnswers,
-    wrongAnswers: state.wrongAnswers
-  }
-  console.log(playerStats);
-  setTimeout(()=>{
-     window.location = '/quizzes/results'
+// endGame() {
+//   alert('Quiz has ended!');
+//   const {state} = this;
+//   const playerStats = {
+//     score: state.score,
+//     numberOfQuestions: state.numberOfQuestions,
+//     numberOfAnsweredQuestions: state.numberOfAnsweredQuestions,
+//     correctAnswers: state.correctAnswers,
+//     wrongAnswers: state.wrongAnswers
+//   }
+//   console.log(playerStats);
+//   setTimeout(()=>{
+//      window.location = '/quizzes/results'
+//
+//   }, 1000);
+// }
 
-  }, 1000);
-}
-
-handleFinish(){
-const playerStats = {
-  score: this.state.score,
-  numberOfQuestions: this.state.numberOfQuestions,
-  numberOfAnsweredQuestions: this.state.numberOfAnsweredQuestions,
-  correctAnswers: this.state.correctAnswers,
-  wrongAnswers: this.state.wrongAnswers
-}
-console.log(playerStats);
-window.open('/quizzes/results')
-// history.push('/quizzes/results');
-// window.location.href = '/quizzes/results'
-// window.location.reload(false);
-}
+// handleFinish(){
+// const playerStats = {
+//   score: this.state.score,
+//   numberOfQuestions: this.state.numberOfQuestions,
+//   numberOfAnsweredQuestions: this.state.numberOfAnsweredQuestions,
+//   correctAnswers: this.state.correctAnswers,
+//   wrongAnswers: this.state.wrongAnswers
+// }
+// console.log(playerStats);
+// window.open('/quizzes/results')
+// // history.push('/quizzes/results');
+// // window.location.href = '/quizzes/results'
+// // window.location.reload(false);
+// }
 
 
   render(){
-    if(!this.props.quiz) { return "No created quiz selected." }
+    if(!this.props.quiz) { return "Please select a quiz above." }
 
-    const {currentQuestion, time } = this.state;
+    const {currentQuestion } = this.state;
 
 
 if (this.state.currentQuestionIndex<this.state.numberOfQuestions) {
@@ -182,8 +184,8 @@ if (this.state.currentQuestionIndex<this.state.numberOfQuestions) {
       <div>
       <button type="button" onClick={this.handleQuitButtonClick}>Quit quiz</button>
       <button type="button" onClick={this.handleNextButtonClick}>Skip this question</button>
-      <button type="button" onClick={this.handleFinish}>FINISH</button>
-      <Link to="/quizzes/results">FinishAAA</Link>
+
+
       </div>
 
 
@@ -198,7 +200,8 @@ if (this.state.currentQuestionIndex<this.state.numberOfQuestions) {
   }
 
   else {
-  // window.alert("The quiz has ended");
+  window.alert("The quiz has ended");
+
     return(
 
     <Fragment>
@@ -207,8 +210,8 @@ if (this.state.currentQuestionIndex<this.state.numberOfQuestions) {
     wrongAnswers={this.state.wrongAnswers}
     numberOfQuestions={this.state.numberOfQuestions}
     currentQuestionIndex={this.state.currentQuestionIndex}
-    currentQuestion={this.state.currentQuestion}/>
-
+    currentQuestion={this.state.currentQuestion}
+    latestUser={this.state.latestUser}/>
     </Fragment>
 
     )
@@ -216,29 +219,5 @@ if (this.state.currentQuestionIndex<this.state.numberOfQuestions) {
   }
 
 }
-
-
-//     this.displayQuestions(this.state.questions, this.state.currentQuestion,
-//       this.state.nextQuestion, this.state.previousQuestion);
-// }
-
-
-//   displayQuestions = (questions = this.state.questions, currentQuestion, nextQuestion, previousQuestion) => {
-//     let currentQuestionIndex = this.state.currentQuestionIndex;
-//     if (!isEmpty(this.state.questions)){
-//       questions = this.state.questions;
-//       currentQuestion = questions[currentQuestionIndex];
-//       nextQuestion = questions[currentQuestionIndex +1];
-//       previousQuestion = questions[currentQuestionIndex - 1];
-//       const answer = currentQuestion.correctAnswer;
-//       this.setState({
-//         currentQuestion: currentQuestion,
-//         nextQuestion: nextQuestion,
-//         previousQuestion: previousQuestion,
-//         answer: answer
-//       }
-//     );
-//   };
-// }
 
 export default CreatedQuizQuestion;
