@@ -10,6 +10,8 @@ class CreateQuestionForm extends Component{
         incorrect2: "",
         incorrect3: "",
         quiz: "",
+        multi: false,
+        trueorfalse: false,
         question: {
           category: "",
           type: "",
@@ -19,7 +21,6 @@ class CreateQuestionForm extends Component{
           incorrectAnswers: [],
           quizzes: []
         }
-
       }
 
       this.handleChange = this.handleChange.bind(this);
@@ -28,6 +29,9 @@ class CreateQuestionForm extends Component{
       this.handleIncorrect1Change = this.handleIncorrect1Change.bind(this);
       this.handleIncorrect2Change = this.handleIncorrect2Change.bind(this);
       this.handleIncorrect3Change = this.handleIncorrect3Change.bind(this);
+      this.TrueOrFalseReturn = this.TrueOrFalseReturn.bind(this);
+      this.MultipleChoiceReturn = this.MultipleChoiceReturn.bind(this);
+      this.TypeChoiceReturn = this.TypeChoiceReturn.bind(this);
   }
 
 
@@ -44,6 +48,12 @@ class CreateQuestionForm extends Component{
     let question = this.state.question;
     question[propertyName] = event.target.value;
     this.setState({ question: question})
+    if(this.state.question.type == "Multiple-choice"){
+      this.state.multi = true
+    }
+    if(this.state.question.type == "True/False"){
+      this.state.trueorfalse = true
+    }
   }
 
   handleIncorrect1Change(event){
@@ -74,26 +84,65 @@ class CreateQuestionForm extends Component{
 
   handleSubmit(event){
     event.preventDefault();
-    this.props.onCreate(this.state.question)
-    this.state.question.incorrectAnswers.push(this.state.incorrect1)
-    this.state.question.incorrectAnswers.push(this.state.incorrect2)
-    this.state.question.incorrectAnswers.push(this.state.incorrect3)
+    if(this.state.multi){
+      this.state.question.incorrectAnswers.push(this.state.incorrect1)
+      this.state.question.incorrectAnswers.push(this.state.incorrect2)
+      this.state.question.incorrectAnswers.push(this.state.incorrect3)
+    } else if
+     (this.state.trueorfalse){
+       this.state.question.incorrectAnswers.push(this.state.incorrect1)
+     }
     this.state.question.quizzes.push(this.state.quiz)
-
+    this.props.onCreate(this.state.question)
     this.setState({
-    incorrect1: "",
-    incorrect2: "",
-    incorrect3: "",
-    quiz: "",
-    question: {
-      category: "",
-      type: "",
-      difficulty: "",
-      questionName: "",
-      correctAnswer: "",
-      incorrectAnswers: [],
-      quizzes: []
-    }})
+      incorrect1: "",
+      incorrect2: "",
+      incorrect3: "",
+      multi: false,
+      trueorfalse: false,
+      quiz: "",
+      question: {
+        category: "",
+        type: "",
+        difficulty: "",
+        questionName: "",
+        correctAnswer: "",
+        incorrectAnswers: [],
+        quizzes: []
+      }})
+}
+
+    TrueOrFalseReturn(){
+      return(
+        <div>
+      <label>Enter the incorrect answer:</label>
+      <input type="text" placeholder="incorrectAnswers" name="incorrectAnswers" onChange={this.handleIncorrect1Change} value={this.state.incorrect1}/>
+      </div>
+    )
+    }
+
+    MultipleChoiceReturn() {
+      return(
+        <div>
+      <label>Enter the incorrect answers:</label>;
+      <input type="text" placeholder="incorrectAnswers" name="incorrectAnswers" onChange={this.handleIncorrect1Change} value={this.state.incorrect1}/>
+      <input type="text" placeholder="incorrectAnswers" name="incorrectAnswers" onChange={this.handleIncorrect2Change} value={this.state.incorrect2}/>
+      <input type="text" placeholder="incorrectAnswers" name="incorrectAnswers" onChange={this.handleIncorrect3Change} value={this.state.incorrect3}/>
+      <br/>
+    </div>
+    )
+    }
+
+    TypeChoiceReturn() {
+      const istrueorfalse = this.state.trueorfalse;
+      const ismultiplechoice = this.state.multi;
+  if (istrueorfalse) {
+    return this.TrueOrFalseReturn()
+  } else if
+    (ismultiplechoice) {
+    return this.MultipleChoiceReturn()
+  }
+
 }
 
   render(){
@@ -105,8 +154,6 @@ class CreateQuestionForm extends Component{
     return <option key={index} value={index}>{quiz.name}</option>
   })
 
-
-
   return(
 
     <div>
@@ -114,7 +161,7 @@ class CreateQuestionForm extends Component{
 
     <label>Choose a category:</label>
     <select name="category" onChange={this.handleChange} defaultValue="select-category">
-        <option value="select-category">Select a category</option>
+        <option disabled value="select-category">Select a category</option>
         <option value="General-Knowledge" >General-Knowledge</option>
         <option value="Mythology" >Mythology</option>
         <option value="Sports" >Sports</option>
@@ -131,14 +178,14 @@ class CreateQuestionForm extends Component{
 
     <label>Choose a type:</label>
     <select name="type" onChange={this.handleChange} defaultValue="select-type">
-        <option value="select-type">Select a type</option>
+        <option disabled value="select-type">Select a type</option>
         <option value="Multiple-choice" >Multiple Choice</option>
         <option value="True/False" >True Or False</option>
         </select> <br/>
 
     <label>Choose a difficulty:</label>
     <select name="difficulty" onChange={this.handleChange} defaultValue="select-difficulty">
-        <option value="select-difficulty">Select a difficulty</option>
+        <option disabled value="select-difficulty">Select a difficulty</option>
         <option value="Easy" >Easy</option>
         <option value="Medium" >Medium</option>
         <option value="Hard" >Hard</option>
@@ -151,10 +198,7 @@ class CreateQuestionForm extends Component{
     <input type="text" placeholder="correctAnswer" name="correctAnswer" onChange={this.handleChange} value={this.state.question.correctAnswer}/><br/>
 
 
-      <label>Enter the incorrect answer(s):</label>
-      <input type="text" placeholder="incorrectAnswers" name="incorrectAnswers" onChange={this.handleIncorrect1Change} value={this.state.incorrect1}/>
-      <input type="text" placeholder="incorrectAnswers" name="incorrectAnswers" onChange={this.handleIncorrect2Change} value={this.state.incorrect2}/>
-      <input type="text" placeholder="incorrectAnswers" name="incorrectAnswers" onChange={this.handleIncorrect3Change} value={this.state.incorrect3}/> <br/>
+    {this.TypeChoiceReturn()}
 
     <label>Choose a quiz to assign your quesiton to:</label>
     <select name="quiz" onChange={this.handleQuizzes} defaultValue="select-quiz">
@@ -168,5 +212,4 @@ class CreateQuestionForm extends Component{
     )
   }
 }
-
 export default CreateQuestionForm;
