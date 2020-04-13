@@ -18,7 +18,8 @@ class CreatedQuizQuestion extends Component{
       score: 0,
       correctAnswers: 0,
       wrongAnswers: 0,
-      latestUser: {}
+      latestUser: {},
+
     }
 
     this.handleOptionClick = this.handleOptionClick.bind(this);
@@ -26,6 +27,8 @@ class CreatedQuizQuestion extends Component{
     this.handlePreviousButtonClick = this.handlePreviousButtonClick.bind(this);
     // this.endGame = this.endGame.bind(this);
     // this.handleFinish = this.handleFinish.bind(this);
+
+
   };
 
 
@@ -33,7 +36,9 @@ class CreatedQuizQuestion extends Component{
 
     if(props.quiz) {
       if (!isEmpty(state.nextQuestion)){
+
         return {
+
           questions: props.quiz.questions,
           numberOfQuestions: props.quiz.questions.length,
           currentQuestion: props.quiz.questions[state.currentQuestionIndex],
@@ -67,11 +72,53 @@ class CreatedQuizQuestion extends Component{
 }
 
 
+//the function sortList sorts/randomizes the 4 options for each question.
+ sortList() {
+  var list, i, switching, b, shouldSwitch;
+  list = document.getElementById("id01");
+  switching = true;
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // start by saying: no switching is done:
+    switching = false;
+    b = list.getElementsByTagName("LI");
+    // Loop through all list-items:
+    for (i = 0; i < (b.length - 1); i++) {
+      // start by saying there should be no switching:
+      shouldSwitch = false;
+      /* check if the next item should
+      switch place with the current item: */
+      if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
+        /* if next item is alphabetically
+        lower than current item, mark as a switch
+        and break the loop: */
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark the switch as done: */
+      b[i].parentNode.insertBefore(b[i + 1], b[i]);
+      switching = true;
+    }
+  }
+}
+
+
+
   handleOptionClick(event){
     if (event.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()){
+      this.sortList();
       this.correctAnswer();
+
+
     } else {
+      this.sortList();
       this.wrongAnswer();
+
+
     }
   }
 
@@ -169,16 +216,19 @@ class CreatedQuizQuestion extends Component{
 if (this.state.currentQuestionIndex<this.state.numberOfQuestions) {
 
 
+
     return (
 
-      <Fragment>
+      <div className="options">
       <h4>Question {this.state.currentQuestionIndex+1}/{this.state.numberOfQuestions}</h4>
 
       <h4>{currentQuestion.questionName}</h4>
-      <p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[0]}</p>
-      <p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[1]}</p>
-      <p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[2]}</p>
-      <p onClick={this.handleOptionClick}>{currentQuestion.correctAnswer}</p>
+      <ul id="id01">
+        <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[0]}</p></li>
+        <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[1]}</p></li>
+        <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[2]}</p></li>
+        <li><p onClick={this.handleOptionClick}>{currentQuestion.correctAnswer}</p></li>
+      </ul>
 
       <div>
       <button type="button" onClick={this.handleQuitButtonClick}>Quit quiz</button>
@@ -187,13 +237,7 @@ if (this.state.currentQuestionIndex<this.state.numberOfQuestions) {
 
       </div>
 
-
-
-      <ul className="component-list">
-
-      </ul>
-
-      </Fragment>
+      </div>
 
     )
   }
