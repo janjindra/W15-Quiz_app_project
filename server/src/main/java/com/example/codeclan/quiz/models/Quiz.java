@@ -35,16 +35,16 @@ public class Quiz {
             })
     private List<Question> questions;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+//    @ManyToOne
+//    @JoinColumn(name = "user_id", nullable = false)
+//    private User user;
 
-    public Quiz(String name, int numberOfQuestions, int totalScore, User user) {
+    public Quiz(String name) {
         this.name = name;
         this.numberOfQuestions = numberOfQuestions;
         this.totalScore = totalScore;
         this.questions = new ArrayList<>();
-        this.user = user;
+//        this.user = user;
     }
 
     public Quiz() {
@@ -94,11 +94,11 @@ public class Quiz {
         this.questions = questions;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 }
