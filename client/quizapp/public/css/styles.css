@@ -82,4 +82,87 @@ body {
     opacity: 1;
     left: 0;
   }
+
+  header {
+      background-color: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 0 10px 0 black;
+    padding: 0;
+    margin: 0;
+  }
+  }
+
+  header img {
+      padding-top: 80px;
+      height: 140px;
+      width: 200px;
+      border-radius: 25px;
+      padding: 0;
+      margin: 0;
+  }
+
+  header * {
+      display: inline;
+  }
+
+  header li {
+      margin: 100px;
+  }
+
+  header li a {
+      color: black;
+      text-decoration: none;
+      padding: 14px 16px;
+      border-radius: 25px;
+  }
+
+  li a:hover {
+    background-color: black;
+    color:white;
+  }
+
+  body {
+    padding-top: 100px
+  }
+
+  form{
+    border: 1px solid;
+    padding: 5px;
+    width: 30%;
+  }
+
+  input[type=text], select, textarea{
+    padding: 4px;
+    border: 1px solid #ccc;
+    resize: vertical;
+  }
+
+  label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+  }
+
+  button[type=submit] {
+    background-color: black;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button:hover {background-color: #3e8e41}
+
+  button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+
+  }
 }
