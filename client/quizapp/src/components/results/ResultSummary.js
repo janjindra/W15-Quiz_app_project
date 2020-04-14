@@ -22,7 +22,7 @@ if (this.props.quiz.name==="Random Questions"){
       <div className="results">
       <h1>Results Page</h1>
 
-      <img src="https://lh3.googleusercontent.com/proxy/iV64n1r5OzLaFL9kD2R7-0aw7FEaNfxgg13BJSAi4T0tP2fhrJEEKLExIKZ2GKirMTvJbRFRhUXGujIieYmw6IY-Z88UvFBuUQarR_egimGy1iHKOwlXD4QNQatBL6tV9Z6fCiFSvS8TjGZjTCkV" alt="" width="100" />
+      <img src="/public/css/tick.png" alt="" width="100" />
       <h3>Hello {this.props.latestUser.firstName} {this.props.latestUser.lastName},</h3>
        <h3>Congratulations - you made it!</h3>
       <h2>Your Result: {Math.round((parseInt(this.props.correctAnswers)/20)*100)}%</h2>
@@ -37,8 +37,8 @@ if (this.props.quiz.name==="Random Questions"){
 
       </ul>
 
-      <button onClick={this.handleAgainButton} type="button"><h2>Play Again</h2></button>
-      <button onClick={this.handleAgainButton} type="button"><h2>Home</h2></button>
+      <button onClick={this.handleAgainButton} type="button"><h4>Play Again</h4></button>
+      <button onClick={this.handleAgainButton} type="button"><h4>Home</h4></button>
       <br></br><br></br>
       </div>
 
@@ -48,7 +48,7 @@ if (this.props.quiz.name==="Random Questions"){
       <div className="results">
       <h1>Results Page</h1>
 
-      <img src="https://lh3.googleusercontent.com/proxy/iV64n1r5OzLaFL9kD2R7-0aw7FEaNfxgg13BJSAi4T0tP2fhrJEEKLExIKZ2GKirMTvJbRFRhUXGujIieYmw6IY-Z88UvFBuUQarR_egimGy1iHKOwlXD4QNQatBL6tV9Z6fCiFSvS8TjGZjTCkV" alt="" width="100" />
+      <img src="/public/css/tick.png" alt="" width="100" />
       <h3>Hello {this.props.latestUser.firstName} {this.props.latestUser.lastName},</h3>
        <h3>Congratulations - you made it!</h3>
        <h2>Your Result: {Math.round((parseInt(this.props.correctAnswers)/parseInt(this.props.numberOfQuestions))*100)}%</h2>
@@ -63,8 +63,8 @@ if (this.props.quiz.name==="Random Questions"){
 
       </ul>
 
-      <button onClick={this.handleAgainButton} type="button"><h2>Play Again</h2></button>
-      <button onClick={this.handleAgainButton} type="button"><h2>Home</h2></button>
+      <button onClick={this.handleAgainButton} type="button"><h4>Play Again</h4></button>
+      <button onClick={this.handleAgainButton} type="button"><h4>Home</h4></button>
       <br></br><br></br>
       </div>
 

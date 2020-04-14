@@ -33,7 +33,7 @@ render(){
   return (
     <div>
     <p> Welcome to our Quiz App, create an account below and get into playing Quizzes right away!</p>
-    <h1> Create a account: </h1>
+    <h1> Create an account: </h1>
     <form onSubmit={this.handleSubmit}>
     <label>Enter first name:</label>
     <input type="text" placeholder= "First Name" name="firstName" onChange={this.handleChange} value={this.state.user.firstName} /><br/>

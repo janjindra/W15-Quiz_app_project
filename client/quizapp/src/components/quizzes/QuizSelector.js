@@ -28,15 +28,19 @@ function handleChangeCategory(event){
   return (
     <div>
 
-    <h4>Select a custom quiz</h4>
-    <select id="quiz-selector" defaultValue="default" onChange={handleChange}>
+    <h4 className="select-quiz-subtitle">Select a custom quiz</h4>
+
+    <div className="center">
+    <select className="quiz-select" defaultValue="default" onChange={handleChange}>
       <option disabled value="default">Choose a Quiz...</option>
       {options}
     </select>
+    </div>
+<br></br><br></br>
+    <p className="or">--- OR ---</p>
 
-
-    <br></br><br></br>
-    <h4>Select a quiz by category</h4>
+  
+    <h4 className="select-quiz-subtitle">Select a quiz by category</h4>
     <button onClick={handleChangeCategory} type="button" value="mythology">Mythology</button>
     <button onClick={handleChangeCategory} type="button" value="sports">Sports</button>
     <button onClick={handleChangeCategory} type="button" value="history">History</button>

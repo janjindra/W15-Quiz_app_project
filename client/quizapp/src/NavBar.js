@@ -3,11 +3,10 @@ import React from 'react';
 const NavBar = (props) => {
   return(
     <div>
-    <title>
-    <h1>JPP Quiz App</h1>
-    </title>
     <header>
-    <ul>
+    <h1 className="h1-header">JPP Quiz App</h1>
+
+    <ul className="ul-links-bar">
     <li className="navLink">
     <a href="/quizzes">Quizzes</a>
     </li>

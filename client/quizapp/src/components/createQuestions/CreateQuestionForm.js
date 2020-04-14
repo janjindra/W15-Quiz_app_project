@@ -161,13 +161,13 @@ class CreateQuestionForm extends Component{
 
   return(
 
-    <div>
+    <div id="questionForm">
 
     <p> At *Quiz App Name Here* you have the opportunity to contribute to our amazing collection of question!</p>
     <p> Whether you're looking to add a bit of General Knowledge or show off your intelligence in Mythology, all questions are welcome! </p>
 
     <h1> Create a question: </h1>
-    <form onSubmit={this.handleSubmit}>
+    <form className="question-form" onSubmit={this.handleSubmit}>
 
     <label>Choose a category:</label>
     <select name="category" onChange={this.handleChange} defaultValue="select-category">

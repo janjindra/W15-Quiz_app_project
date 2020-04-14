@@ -5,7 +5,7 @@
 
 #id01 li {
   padding: 8px 16px;
-  border: 1px solid red;
+  border: 1px solid #34495e;
   margin: 20px;
   cursor: pointer;
   background-color: white;
@@ -13,21 +13,56 @@
 
 #id01 li:hover {background: lightgrey;}
 
-#left-side-bar {
-      border: black 1px solid;
-      overflow: scroll;
-      height: 650px;
-      width: 20%;
-    }
 
 #results-item {
   margin: 4px;
-  font-size: 12px;
+  font-size: 14px;
   list-style-type: none;
+}
+
+.h1-header {
+color: #34495e;
+padding-left: 20px;
+margin: 0;
+height: 100%;
+width: 25%;
+text-align: left;
+line-height: 80px;
+}
+
+
+.ul-links-bar{
+  width: 100%;
+  line-height: 80px;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+
 }
 
 .r-item {
     list-style-type: none;
+}
+
+.or {
+color: grey;
+font-size: 12px;
+text-align: center;
+}
+
+.select-quiz-subtitle{
+  text-align: center;
+}
+
+.quiz-header {
+padding: 0;
+margin: 0;
+height: 10%;
+width: 100%;
+text-align: center;
+padding: 0px 10%;
+
 }
 
 .options {
@@ -44,9 +79,35 @@
   padding: 0px 40px
 }
 
-.h2 {
+
+.center{
+  text-align:center;
+  display: inline;
+  align-self: center;
+}
+ .quiz-select{
+font-size: 16px;
+background-color: lightgrey;
+border: grey;
+border-radius: 0px;
+width: 500px;
+height: 30px;
+overflow: hidden;
+padding: .8rem 3rem .8rem .5rem;
+display:inline-block;
+margin-left: 15px;       /* This is when the drop down box appears */
+position: relative;
+text-align:center;
+display: inline;
 
 }
+
+
+
+
+
+
+
 
 
 
@@ -61,20 +122,35 @@
   justify-content: center;
 }
 
+
+#left-side-bar {
+      border: black 1px solid;
+      overflow: scroll;
+      height: 650px;
+      width: 15%;
+    }
+
     #center {
       border: black 1px solid;
       padding: 0;
       display: flex;
       /* flex-wrap: wrap; */
       justify-content: space-evenly;
-      width: 80%;
+      width: 65%;
+      position: relative;
+      text-align:center;
+      display: inline;
     }
 
     #right-side-bar {
       overflow: scroll;
       border: black 1px solid;
       height: 650px;
-      display: flex;
+      width: 20%;
+      text-align:center;
+      display: inline;
+      align-self: center;
+      /* display: flex; */
       /* flex-wrap: wrap; */
       justify-content: space-evenly;
     }
@@ -85,6 +161,11 @@
       /* flex-wrap: wrap; */
       justify-content: space-evenly;
     }
+
+
+.question-form{
+  width: 90%
+}
 
 
 body {
@@ -117,7 +198,7 @@ body {
 .menu {
   background: #34495e;
   height: auto;
-  width: 250px;
+  width: 100%;
   opacity:0;
   positon: absolute;
   visibility: hidden;
@@ -193,7 +274,7 @@ body {
       height: 80px;
       display: flex;
       align-items: center;
-      box-shadow: 0 0 10px 0 black;
+      /* box-shadow: 0 0 10px 0 black; */
     padding: 0;
     margin: 0;
   }
@@ -202,24 +283,26 @@ body {
       display: inline;
   }
 
-  header li {
-      margin: 100px;
+header li {
+      margin: 40px;
+      font-size: 16px;
   }
 
-  header li a {
+header li a {
       color: black;
       text-decoration: none;
       padding: 14px 16px;
       border-radius: 25px;
   }
 
-  li a:hover {
-    background-color: black;
+
+header li a:hover {
+    background-color: #34495e;
     color:white;
   }
 
   body {
-    padding-top: 100px
+    padding-top: 80px;
   }
 
   form{

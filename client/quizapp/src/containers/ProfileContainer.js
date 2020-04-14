@@ -35,13 +35,15 @@ class ProfileContainer extends Component{
 
     return(
       <Router>
-      <Fragment>
-      <Switch>
-      <Route exact path = '/login' render={() => {
-        return <MyProfileForm onCreate={this.handlePost} />
-      }} />
-      </Switch>
-      </Fragment>
+
+    <div>
+    <Switch>
+    <Route exact path = '/login' render={() => {
+      return <MyProfileForm onCreate={this.handlePost} />
+    }} />
+    </Switch>
+    </div>
+
       </Router>
       // <Route exact path = '/profile/:id' render={(props) => {
       //   const user = this.findProfileById(props.match.params.id);

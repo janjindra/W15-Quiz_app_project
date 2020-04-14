@@ -27,11 +27,9 @@ class QuizHeader extends Component{
 
   render(){
     return (
-      <Fragment>
-
-      <h1>Welcome! Let's play a Quiz now.</h1>
-
-      </Fragment>
+      <div className="quiz-header">
+        <h1>Welcome! Let's play a Quiz now.</h1>
+      </div>
     )
   }
 }
