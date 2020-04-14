@@ -14,6 +14,7 @@ class CreatedQuizQuestion extends Component{
       numberOfQuestions: 0,
       numberOfAnsweredQuestions: 0,
       currentQuestionIndex: 0,
+      skippedAnswers: 0,
       score: 0,
       correctAnswers: 0,
       wrongAnswers: 0,
@@ -32,27 +33,29 @@ class CreatedQuizQuestion extends Component{
       if (!isEmpty(state.nextQuestion)){
         if (props.quiz.name === "Random Questions"){
 
-        return {
-          //shuffling the array of 198 questions and picking random 15
-          questions: props.quiz.questions,
-          numberOfQuestions: props.quiz.questions.length,
-          currentQuestion: props.quiz.questions[state.currentQuestionIndex],
-          nextQuestion: props.quiz.questions[Math.floor(Math.random()*190)+1],
-          previousQuestion: props.quiz.questions[state.currentQuestionIndex-1],
-          answer: props.quiz.questions[state.currentQuestionIndex].correctAnswer,
-          latestUser: props.users[props.users.length-1]
+
+
+          return {
+            //shuffling the array of 198 questions and picking random 15
+            questions: props.quiz.questions,
+            numberOfQuestions: props.quiz.questions.length,
+            currentQuestion: props.quiz.questions[state.currentQuestionIndex],
+            nextQuestion: props.quiz.questions[state.currentQuestionIndex+1],
+            previousQuestion: props.quiz.questions[state.currentQuestionIndex-1],
+            answer: props.quiz.questions[state.currentQuestionIndex].correctAnswer,
+            latestUser: props.users[props.users.length-1]
+          }
+        } else {
+          return {
+            questions: props.quiz.questions,
+            numberOfQuestions: props.quiz.questions.length,
+            currentQuestion: props.quiz.questions[state.currentQuestionIndex],
+            nextQuestion: props.quiz.questions[state.currentQuestionIndex+1],
+            previousQuestion: props.quiz.questions[state.currentQuestionIndex-1],
+            answer: props.quiz.questions[state.currentQuestionIndex].correctAnswer,
+            latestUser: props.users[props.users.length-1]
+          }
         }
-      } else {
-        return {
-          questions: props.quiz.questions,
-          numberOfQuestions: props.quiz.questions.length,
-          currentQuestion: props.quiz.questions[state.currentQuestionIndex],
-          nextQuestion: props.quiz.questions[state.currentQuestionIndex+1],
-          previousQuestion: props.quiz.questions[state.currentQuestionIndex-1],
-          answer: props.quiz.questions[state.currentQuestionIndex].correctAnswer,
-          latestUser: props.users[props.users.length-1]
-        }
-      }
       }
       else {
         if (isEmpty(state.nextQuestion)){
@@ -114,13 +117,23 @@ class CreatedQuizQuestion extends Component{
   }
 
 
+
   handleSkipButtonClick(){
-    if (this.state.nextQuestion !== undefined){
+    if (this.props.quiz.name === "Random Questions"){
+      if (this.state.nextQuestion !== undefined){
+    this.setState(prevState=>({
+      currentQuestionIndex: Math.floor(Math.random()*190)+1,
+      skippedAnswers: prevState.skippedAnswers+1,
+    }))
+  }
+      } else {
+        if (this.state.nextQuestion !== undefined){
       this.setState(prevState=>({
         currentQuestionIndex: prevState.currentQuestionIndex+1
       }))
-    }
+      }
   }
+}
 
   // handlePreviousButtonClick(){
   //   if (this.state.previousQuestion !== undefined){
@@ -138,100 +151,193 @@ class CreatedQuizQuestion extends Component{
 
 
   correctAnswer(){
+if (this.props.quiz.name === "Random Questions"){
+    this.setState(prevState => ({
+      score: prevState.score +1,
+      correctAnswers: prevState.correctAnswers+1,
+      currentQuestionIndex: Math.floor(Math.random()*190)+1,
+      numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions+1
+    }))
+  } else {
     this.setState(prevState => ({
       score: prevState.score +1,
       correctAnswers: prevState.correctAnswers+1,
       currentQuestionIndex: prevState.currentQuestionIndex+1,
       numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions+1
-    }));
-  }
+  }))
+}
+}
 
   wrongAnswer(){
+    if (this.props.quiz.name === "Random Questions"){
+        this.setState(prevState => ({
+          wrongAnswers: prevState.wrongAnswers+1,
+          currentQuestionIndex: Math.floor(Math.random()*190)+1,
+          numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions+1
+        }));
+      } else {
     this.setState(prevState => ({
       wrongAnswers: prevState.wrongAnswers+1,
       currentQuestionIndex: prevState.currentQuestionIndex+1,
       numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions+1
     }));
   }
+}
 
 
   render(){
     if(!this.props.quiz) { return null } else {
 
-    const {currentQuestion } = this.state;
+      const {currentQuestion } = this.state;
 
-    if (((this.props.quiz.name !== "Random Questions") && (this.state.currentQuestionIndex<this.state.numberOfQuestions) )
-          || (((this.state.currentQuestionIndex+1) <= 20) && (this.props.quiz.name === "Random Questions"))) {
+      //random questions
+      if (this.props.quiz.name === "Random Questions") {
 
-      if (this.state.currentQuestion.incorrectAnswers.length !==1){
+        if ((this.state.skippedAnswers+this.state.wrongAnswers+this.state.correctAnswers+1) <= 20){
 
-        // this is multiple choice answer
-        return (
-          <div className="options">
-            <h4>Question {this.state.currentQuestionIndex+1}/{this.state.numberOfQuestions}</h4>
+          //random questions - miltiple answers
+          if (this.state.currentQuestion.incorrectAnswers.length !==1){
 
-            <h4>{currentQuestion.questionName}</h4>
-            <ul id="id01">
+
+            return (
+              <div className="options">
+              <h4>Question {this.state.skippedAnswers+this.state.wrongAnswers+this.state.correctAnswers+1}/20</h4>
+
+              <h4>{currentQuestion.questionName}</h4>
+              <ul id="id01">
               <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[0]}</p></li>
               <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[1]}</p></li>
               <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[2]}</p></li>
               <li><p onClick={this.handleOptionClick}>{currentQuestion.correctAnswer}</p></li>
-            </ul>
+              </ul>
 
-            <div>
-            <button type="button" onClick={this.handleQuitButtonClick}><h3>Quit quiz</h3></button>
-            <button type="button" onClick={this.handleSkipButtonClick}><h3>Skip this question</h3></button>
-            </div>
-          </div>
-        )
-      }
-      else {
-
-        //this is true/false choice answer
-        return (
-          <div className="options">
-            <h4>Question {this.state.currentQuestionIndex+1}/{this.state.numberOfQuestions}</h4>
-            <h4>{currentQuestion.questionName}</h4>
-            <ul id="id01">
-              <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[0]}</p></li>
-              <li><p onClick={this.handleOptionClick}>{currentQuestion.correctAnswer}</p></li>
-            </ul>
-            <div>
+              <div>
               <button type="button" onClick={this.handleQuitButtonClick}><h3>Quit quiz</h3></button>
               <button type="button" onClick={this.handleSkipButtonClick}><h3>Skip this question</h3></button>
-            </div>
-          </div>
+              </div>
+              </div>
+            )
+          }
+          // random questions - true/false questions
+          else {
 
-        )
+            //this is true/false choice answer
+            return (
+              <div className="options">
+              <h4>Question {this.state.skippedAnswers+this.state.wrongAnswers+this.state.correctAnswers+1}/20</h4>
+              <h4>{currentQuestion.questionName}</h4>
+              <ul id="id01">
+              <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[0]}</p></li>
+              <li><p onClick={this.handleOptionClick}>{currentQuestion.correctAnswer}</p></li>
+              </ul>
+              <div>
+              <button type="button" onClick={this.handleQuitButtonClick}><h3>Quit quiz</h3></button>
+              <button type="button" onClick={this.handleSkipButtonClick}><h3>Skip this question</h3></button>
+              </div>
+              </div>
+
+            )
+          }
+        }
+
+        //random questions - end quiz and show results
+        else {
+          window.alert("The quiz has ended");
+
+          return(
+
+            <Fragment>
+
+            <ResultSummary numberOfAnsweredQuestions={this.state.numberOfAnsweredQuestions}
+            correctAnswers={this.state.correctAnswers}
+            wrongAnswers={this.state.wrongAnswers}
+            skippedAnswers={this.state.skippedAnswers}
+            numberOfQuestions={this.state.numberOfQuestions}
+            currentQuestionIndex={this.state.currentQuestionIndex}
+            currentQuestion={this.state.currentQuestion}
+            latestUser={this.state.latestUser}
+            quiz={this.props.quiz}/>
+            </Fragment>
+          )
+
+        }
+      }
+
+      else {
+        if (this.props.quiz.name !== "Random Questions") {
+
+          if (this.state.currentQuestionIndex<this.state.numberOfQuestions) {
+            //every other quiz but random questions quiz
+            //every other quiz but random questions quiz - multiple answers
+            if (this.state.currentQuestion.incorrectAnswers.length !==1){
+
+              //every other quiz but random questions quiz - multiple choice answer
+              return (
+                <div className="options">
+                <h4>Question {this.state.currentQuestionIndex+1}/{this.state.numberOfQuestions}</h4>
+
+                <h4>{currentQuestion.questionName}</h4>
+                <ul id="id01">
+                <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[0]}</p></li>
+                <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[1]}</p></li>
+                <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[2]}</p></li>
+                <li><p onClick={this.handleOptionClick}>{currentQuestion.correctAnswer}</p></li>
+                </ul>
+
+                <div>
+                <button type="button" onClick={this.handleQuitButtonClick}><h3>Quit quiz</h3></button>
+                <button type="button" onClick={this.handleSkipButtonClick}><h3>Skip this question</h3></button>
+                </div>
+                </div>
+              )
+            }
+            //every other quiz but random questions quiz - true/false questions
+            else {
+
+              return (
+                <div className="options">
+                <h4>Question {this.state.currentQuestionIndex+1}/{this.state.numberOfQuestions}</h4>
+                <h4>{currentQuestion.questionName}</h4>
+                <ul id="id01">
+                <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[0]}</p></li>
+                <li><p onClick={this.handleOptionClick}>{currentQuestion.correctAnswer}</p></li>
+                </ul>
+                <div>
+                <button type="button" onClick={this.handleQuitButtonClick}><h3>Quit quiz</h3></button>
+                <button type="button" onClick={this.handleSkipButtonClick}><h3>Skip this question</h3></button>
+                </div>
+                </div>
+
+              )
+            }
+          }
+
+          //every other quiz but random questions quiz - end quiz and show results
+          else {
+            window.alert("The quiz has ended");
+
+            return(
+
+              <Fragment>
+
+              <ResultSummary numberOfAnsweredQuestions={this.state.numberOfAnsweredQuestions}
+              correctAnswers={this.state.correctAnswers}
+              wrongAnswers={this.state.wrongAnswers}
+              numberOfQuestions={this.state.numberOfQuestions}
+              currentQuestionIndex={this.state.currentQuestionIndex}
+              currentQuestion={this.state.currentQuestion}
+              latestUser={this.state.latestUser}
+              quiz={this.props.quiz}/>
+              </Fragment>
+            )
+
+          }
+
+        }
       }
 
     }
-
-    else {
-      window.alert("The quiz has ended");
-
-
-
-      return(
-
-        <Fragment>
-
-        <ResultSummary numberOfAnsweredQuestions={this.state.numberOfAnsweredQuestions}
-        correctAnswers={this.state.correctAnswers}
-        wrongAnswers={this.state.wrongAnswers}
-        numberOfQuestions={this.state.numberOfQuestions}
-        currentQuestionIndex={this.state.currentQuestionIndex}
-        currentQuestion={this.state.currentQuestion}
-        latestUser={this.state.latestUser}/>
-        </Fragment>
-      )
-
-
-
-    }
-
   }
-}
 }
 
 export default CreatedQuizQuestion;

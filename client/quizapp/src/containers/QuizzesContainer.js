@@ -3,7 +3,7 @@ import QuizDetail from '../components/quizzes/QuizDetail';
 import QuizSelector from '../components/quizzes/QuizSelector';
 import Request from '../helpers/request';
 import CreatedQuizQuestion from '../components/quizzes/CreatedQuizQuestion';
-
+import QuizHeader from '../components/quizzes/QuizHeader';
 
 class QuizzesContainer extends Component{
   constructor(props){
@@ -21,7 +21,8 @@ class QuizzesContainer extends Component{
       art: [],
       politics: [],
       geography: [],
-      selectedCategoryName: ""
+      selectedCategoryName: "",
+      latestUser: {}
     }
     this.handleQuizSelected = this.handleQuizSelected.bind(this);
     this.handleCategorySelected = this.handleCategorySelected.bind(this);
@@ -102,6 +103,11 @@ class QuizzesContainer extends Component{
     this.setState({selectedQuizName: quizName})
   }
 
+  getLatestUser(){
+    //save it to the state
+    this.setState({latestUser: this.state.users[this.state.users.langht-1]})
+  }
+
   handleCategorySelected(categoryName){
     //save it to the state
     this.setState({selectedCategoryName: categoryName})
@@ -119,11 +125,12 @@ class QuizzesContainer extends Component{
       return (
 
         <Fragment>
-        <h1 id="h1-center">Welcome! Let's play a Quiz now.</h1>
+
+        <QuizHeader users={this.state.users[this.state.users.length-1]}/>
 
         { (this.state.selectedQuizName==="" && this.state.selectedCategoryName==="") ? <QuizSelector quizzes={this.state.quizzes} onQuizSelected={this.handleQuizSelected} onCategorySelected={this.handleCategorySelected}/> : null }
 
-        <QuizDetail users={this.state.users} mythology={this.state.mythology} sports={this.state.sports} generalKnowledge={this.state.generalKnowledge} history={this.state.history} animals={this.state.animals} geography={this.state.geography} art={this.state.art} politics={this.state.politics} category={selectedCategory}  />
+        <QuizDetail users={this.state.users} quiz={selectedQuiz} mythology={this.state.mythology} sports={this.state.sports} generalKnowledge={this.state.generalKnowledge} history={this.state.history} animals={this.state.animals} geography={this.state.geography} art={this.state.art} politics={this.state.politics} category={selectedCategory}  />
 
         <CreatedQuizQuestion users={this.state.users} quiz={selectedQuiz}/>
 

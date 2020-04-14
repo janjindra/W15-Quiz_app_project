@@ -17,7 +17,7 @@ handleAgainButton(){
   render(){
 console.log(this.props);
 
-if (this.props.selectedQuizName==="Random Question"){
+if (this.props.quiz.name==="Random Questions"){
     return(
       <Fragment>
       <h1>Results Page</h1>
@@ -28,11 +28,11 @@ if (this.props.selectedQuizName==="Random Question"){
 
       <ul>
       <li><p>Your Score: {this.props.correctAnswers}/20</p></li>
-      <li><p>Total Number of Questions: {this.props.numberOfQuestions}</p></li>
+      <li><p>Total Number of Questions: 20</p></li>
       <li><p>Number of Attempted Questions: {this.props.numberOfAnsweredQuestions}</p></li>
       <li><p>Number of Correct Answers: {this.props.correctAnswers}</p></li>
       <li><p>Number of Wrong Answers: {this.props.wrongAnswers}</p></li>
-      <li><p>Number of Skipped Answers: {20-parseInt(this.props.numberOfAnsweredQuestions)}</p></li>
+      <li><p>Number of Skipped Answers: {this.props.skippedAnswers}</p></li>
 
       </ul>
 
