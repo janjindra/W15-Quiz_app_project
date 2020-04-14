@@ -9,10 +9,6 @@ class ResultSummary extends Component{
   };
 
 
-componentDidMount(){
-
-};
-
 
 handleAgainButton(){
   window.location = '/quizzes';
@@ -23,10 +19,11 @@ console.log(this.props);
 
     return(
       <Fragment>
-      <h1>Results Page:</h1>
+      <h1>Results Page</h1>
+
       <img src="https://cdn.clipart.email/a1703c3bf965727f58edcc4a8ad7e941_kisspng-checkbox-check-mark-tick-clip-art-arachn-check-box-green-_920-955.jpeg" alt="" width="100" />
       <h3>Hey {this.props.latestUser.firstName} {this.props.latestUser.lastName}... Congratulations - you made it!</h3>
-      <h2>Your Result: {Math.round((parseInt(this.props.correctAnswers)/parseInt(this.props.numberOfAnsweredQuestions))*100)}%</h2>
+      <h2>Your Result: {Math.round((parseInt(this.props.correctAnswers)/parseInt(this.props.numberOfQuestions))*100)}%</h2>
 
       <ul>
       <li><p>Your Score: {this.props.correctAnswers}/{this.props.numberOfQuestions}</p></li>

@@ -21,8 +21,8 @@ class CreatedQuizQuestion extends Component{
     }
 
     this.handleOptionClick = this.handleOptionClick.bind(this);
-    this.handleNextButtonClick = this.handleNextButtonClick.bind(this);
-    this.handlePreviousButtonClick = this.handlePreviousButtonClick.bind(this);
+    this.handleSkipButtonClick = this.handleSkipButtonClick.bind(this);
+    // this.handlePreviousButtonClick = this.handlePreviousButtonClick.bind(this);
   };
 
 
@@ -101,7 +101,7 @@ class CreatedQuizQuestion extends Component{
   }
 
 
-  handleNextButtonClick(){
+  handleSkipButtonClick(){
     if (this.state.nextQuestion !== undefined){
       this.setState(prevState=>({
         currentQuestionIndex: prevState.currentQuestionIndex+1
@@ -109,13 +109,13 @@ class CreatedQuizQuestion extends Component{
     }
   }
 
-  handlePreviousButtonClick(){
-    if (this.state.previousQuestion !== undefined){
-      this.setState(prevState=>({
-        currentQuestionIndex: prevState.currentQuestionIndex-1
-      }))
-    }
-  }
+  // handlePreviousButtonClick(){
+  //   if (this.state.previousQuestion !== undefined){
+  //     this.setState(prevState=>({
+  //       currentQuestionIndex: prevState.currentQuestionIndex-1
+  //     }))
+  //   }
+  // }
 
   handleQuitButtonClick(){
     if(window.confirm("Are you sure you want to quit?")){
@@ -143,13 +143,13 @@ class CreatedQuizQuestion extends Component{
 
 
   render(){
-    if(!this.props.quiz) { return "Please select a quiz above." }
+    if(!this.props.quiz) { return null }
 
     const {currentQuestion } = this.state;
 
     if (this.state.currentQuestionIndex<this.state.numberOfQuestions) {
 
-      if (this.state.currentQuestion.incorrectAnswers.length !=1){
+      if (this.state.currentQuestion.incorrectAnswers.length !==1){
 
         // this is multiple choice answer
         return (
@@ -165,8 +165,8 @@ class CreatedQuizQuestion extends Component{
             </ul>
 
             <div>
-            <button type="button" onClick={this.handleQuitButtonClick}>Quit quiz</button>
-            <button type="button" onClick={this.handleNextButtonClick}>Skip this question</button>
+            <button type="button" onClick={this.handleQuitButtonClick}><h3>Quit quiz</h3></button>
+            <button type="button" onClick={this.handleSkipButtonClick}><h3>Skip this question</h3></button>
             </div>
           </div>
         )
@@ -183,8 +183,8 @@ class CreatedQuizQuestion extends Component{
               <li><p onClick={this.handleOptionClick}>{currentQuestion.correctAnswer}</p></li>
             </ul>
             <div>
-              <button type="button" onClick={this.handleQuitButtonClick}>Quit quiz</button>
-              <button type="button" onClick={this.handleNextButtonClick}>Skip this question</button>
+              <button type="button" onClick={this.handleQuitButtonClick}><h3>Quit quiz</h3></button>
+              <button type="button" onClick={this.handleSkipButtonClick}><h3>Skip this question</h3></button>
             </div>
           </div>
 
