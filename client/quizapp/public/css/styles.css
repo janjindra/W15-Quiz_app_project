@@ -45,3 +45,37 @@ li a:hover {
 body {
   padding-top: 100px
 }
+
+form{
+  border: 1px solid;
+  padding: 5px;
+  width: 30%;
+}
+
+input[type=text], select, textarea{
+  padding: 4px;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+button[type=submit] {
+  background-color: black;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {background-color: #3e8e41}
+
+button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
