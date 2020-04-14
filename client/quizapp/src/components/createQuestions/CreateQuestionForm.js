@@ -92,7 +92,9 @@ class CreateQuestionForm extends Component{
      (this.state.trueorfalse){
        this.state.question.incorrectAnswers.push(this.state.incorrect1)
      }
-    this.state.question.quizzes.push(this.state.quiz)
+    if(!this.props.hasOwnProperty("quizInQuestion")){
+      this.state.question.quizzes.push(this.state.quiz)
+    }
     this.props.onCreate(this.state.question)
     this.setState({
       incorrect1: "",
@@ -160,6 +162,7 @@ class CreateQuestionForm extends Component{
   return(
 
     <div>
+    <h1> Create a question: </h1>
     <form onSubmit={this.handleSubmit}>
 
     <label>Choose a category:</label>
@@ -203,11 +206,15 @@ class CreateQuestionForm extends Component{
 
     {this.TypeChoiceReturn()}
 
-    <label>Choose a quiz to assign your quesiton to:</label>
-    <select name="quiz" onChange={this.handleQuizzes} defaultValue="select-quiz">
+    { !this.props.hasOwnProperty("quizInQuestion") &&
+      <>
+        <label>Choose a quiz to assign your quesiton to:</label>
+        <select name="quiz" onChange={this.handleQuizzes} defaultValue="select-quiz">
         <option disabled value ='select-quiz'>Select a Quiz</option>
         {quizOptions}
         </select> <br/>
+      </>
+    }
 
         <button type="submit">Add Question!</button>
     </form>

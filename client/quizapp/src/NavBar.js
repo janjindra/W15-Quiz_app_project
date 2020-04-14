@@ -3,7 +3,6 @@ import React from 'react';
 const NavBar = (props) => {
   return(
     <header>
-
     <ul>
     <li className="navLink">
     <a href="/quizzes">Quizzes</a>
@@ -15,9 +14,10 @@ const NavBar = (props) => {
     <a href="/createQuestions">Create A Question</a>
     </li>
     <li className="navLink">
-    <a href="/profile">Profile</a>
+    <a href="/login">Logout</a>
     </li>
     </ul>
+
     </header>
   )
 }
