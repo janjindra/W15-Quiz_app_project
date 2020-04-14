@@ -30,7 +30,19 @@ class CreatedQuizQuestion extends Component{
 
     if(props.quiz) {
       if (!isEmpty(state.nextQuestion)){
+        if (props.quiz.name === "Random Questions"){
 
+        return {
+          //shuffling the array of 198 questions and picking random 15
+          questions: props.quiz.questions,
+          numberOfQuestions: props.quiz.questions.length,
+          currentQuestion: props.quiz.questions[state.currentQuestionIndex],
+          nextQuestion: props.quiz.questions[Math.floor(Math.random()*190)+1],
+          previousQuestion: props.quiz.questions[state.currentQuestionIndex-1],
+          answer: props.quiz.questions[state.currentQuestionIndex].correctAnswer,
+          latestUser: props.users[props.users.length-1]
+        }
+      } else {
         return {
           questions: props.quiz.questions,
           numberOfQuestions: props.quiz.questions.length,
@@ -40,6 +52,7 @@ class CreatedQuizQuestion extends Component{
           answer: props.quiz.questions[state.currentQuestionIndex].correctAnswer,
           latestUser: props.users[props.users.length-1]
         }
+      }
       }
       else {
         if (isEmpty(state.nextQuestion)){
