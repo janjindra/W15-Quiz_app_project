@@ -12,9 +12,19 @@ class QuizzesContainer extends Component{
       users: [],
       questions: [],
       selectedQuizName: "",
-      quizzes: []
+      quizzes: [],
+      mythology: [],
+      sports: [],
+      generalKnowledge: [],
+      history: [],
+      animals: [],
+      art: [],
+      politics: [],
+      geography: [],
+      selectedCategoryName: ""
     }
     this.handleQuizSelected = this.handleQuizSelected.bind(this);
+    this.handleCategorySelected = this.handleCategorySelected.bind(this);
   };
 
   componentDidMount(){
@@ -35,41 +45,93 @@ class QuizzesContainer extends Component{
     .then((data) => {
       this.setState({users: data})
     });
+
+    const requestMy = new Request();
+    requestMy.get('/api/questions?category=Mythology')
+    .then((data) => {
+      this.setState({mythology: data})
+    });
+
+    const requestAn = new Request();
+    requestAn.get('/api/questions?category=Animals')
+    .then((data) => {
+      this.setState({animals: data})
+    });
+
+    const requestHi = new Request();
+    requestHi.get('/api/questions?category=History')
+    .then((data) => {
+      this.setState({history: data})
+    });
+
+    const requestGK = new Request();
+    requestGK.get('/api/questions?category=General%20Knowledge')
+    .then((data) => {
+      this.setState({generalKnowledge: data})
+    });
+
+    const requestSp = new Request();
+    requestSp.get('/api/questions?category=Sports')
+    .then((data) => {
+      this.setState({sports: data})
+    });
+
+    const requestGe = new Request();
+    requestGe.get('/api/questions?category=Geography')
+    .then((data) => {
+      this.setState({geography: data})
+    });
+
+    const requestPo = new Request();
+    requestPo.get('/api/questions?category=Politics')
+    .then((data) => {
+      this.setState({politics: data})
+    });
+
+    const requestAr = new Request();
+    requestAr.get('/api/questions?category=Art')
+    .then((data) => {
+      this.setState({art: data})
+    });
   }
 
-  getLatestUser(){
-    this.setState({latestUser: this.state.users[-1]})
-    // for (var user of this.state.users){
-    //   if (this.state.users.indexOf(user) === this.state.users.length-1){
-    //     this.setState({latestUser: user})
-    //   }
-    // }
-  }
 
 
   handleQuizSelected(quizName){
-  //save it to the state
-  this.setState({selectedQuizName: quizName})
-}
+    //save it to the state
+    this.setState({selectedQuizName: quizName})
+  }
 
-render(){
+  handleCategorySelected(categoryName){
+    //save it to the state
+    this.setState({selectedCategoryName: categoryName})
+  }
 
-  const selectedQuiz = this.state.quizzes.find(quiz => quiz.name===
+
+  render(){
+
+    const selectedQuiz = this.state.quizzes.find(quiz => quiz.name===
       this.state.selectedQuizName)
 
+      const selectedCategory =  this.state.selectedCategoryName;
+// <QuizDetail users={this.state.users} questions={this.state.questions} mythology={this.state.mythology} sports={this.state.sport} generalKnowledge={this.generalKnowledge} history={this.history} animals={this.animals}/>
 
-  return (
+      return (
 
-    <Fragment>
+        <Fragment>
+        <h1 id="h1-center">Welcome! Let's play a Quiz now.</h1>
 
-    <QuizSelector quizzes={this.state.quizzes} onQuizSelected={this.handleQuizSelected}></QuizSelector>
-    <CreatedQuizQuestion users={this.state.users} quiz={selectedQuiz}/>
-    <QuizDetail questions={this.state.questions} quiz={selectedQuiz}/>
-    </Fragment>
+        { (this.state.selectedQuizName==="" && this.state.selectedCategoryName==="") ? <QuizSelector quizzes={this.state.quizzes} onQuizSelected={this.handleQuizSelected} onCategorySelected={this.handleCategorySelected}/> : null }
 
-  )
-}
+        <QuizDetail users={this.state.users} mythology={this.state.mythology} sports={this.state.sports} generalKnowledge={this.state.generalKnowledge} history={this.state.history} animals={this.state.animals} geography={this.state.geography} art={this.state.art} politics={this.state.politics} category={selectedCategory}  />
 
-}
+        <CreatedQuizQuestion users={this.state.users} quiz={selectedQuiz}/>
 
-export default QuizzesContainer;
+
+        </Fragment>
+
+      )
+    }
+  }
+
+  export default QuizzesContainer;
