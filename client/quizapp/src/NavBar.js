@@ -3,9 +3,9 @@ import React from 'react';
 const NavBar = (props) => {
   return(
     <div>
-    <header>
+    <title>
     <h1>JPP Quiz App</h1>
-    </header>
+    </title>
     <header>
     <ul>
     <li className="navLink">

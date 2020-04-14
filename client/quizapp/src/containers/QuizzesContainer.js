@@ -124,18 +124,22 @@ class QuizzesContainer extends Component{
 
       return (
 
-        <Fragment>
-
-        <QuizHeader users={this.state.users[this.state.users.length-1]}/>
-
-        { (this.state.selectedQuizName==="" && this.state.selectedCategoryName==="") ? <QuizSelector quizzes={this.state.quizzes} onQuizSelected={this.handleQuizSelected} onCategorySelected={this.handleCategorySelected}/> : null }
-
-        <QuizDetail users={this.state.users} quiz={selectedQuiz} mythology={this.state.mythology} sports={this.state.sports} generalKnowledge={this.state.generalKnowledge} history={this.state.history} animals={this.state.animals} geography={this.state.geography} art={this.state.art} politics={this.state.politics} category={selectedCategory}  />
-
-        <CreatedQuizQuestion users={this.state.users} quiz={selectedQuiz}/>
 
 
-        </Fragment>
+      <div className="quizzes">
+
+      <QuizHeader users={this.state.users[this.state.users.length-1]}/>
+<br></br>
+      { (this.state.selectedQuizName==="" && this.state.selectedCategoryName==="") ? <QuizSelector quizzes={this.state.quizzes} onQuizSelected={this.handleQuizSelected} onCategorySelected={this.handleCategorySelected}/> : null }
+
+      <QuizDetail users={this.state.users} quiz={selectedQuiz} mythology={this.state.mythology} sports={this.state.sports} generalKnowledge={this.state.generalKnowledge} history={this.state.history} animals={this.state.animals} geography={this.state.geography} art={this.state.art} politics={this.state.politics} category={selectedCategory}  />
+
+      <CreatedQuizQuestion users={this.state.users} quiz={selectedQuiz}/>
+
+
+</div>
+
+
 
       )
     }

@@ -201,9 +201,9 @@ if (this.props.quiz.name === "Random Questions"){
 
             return (
               <div className="options">
-              <h4>Question {this.state.skippedAnswers+this.state.wrongAnswers+this.state.correctAnswers+1}/20</h4>
+              <h4 id="question-number-progress">Question {this.state.skippedAnswers+this.state.wrongAnswers+this.state.correctAnswers+1}/20</h4>
 
-              <h4>{currentQuestion.questionName}</h4>
+              <h2>{currentQuestion.questionName}</h2>
               <ul id="id01">
               <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[0]}</p></li>
               <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[1]}</p></li>
@@ -224,8 +224,8 @@ if (this.props.quiz.name === "Random Questions"){
             //this is true/false choice answer
             return (
               <div className="options">
-              <h4>Question {this.state.skippedAnswers+this.state.wrongAnswers+this.state.correctAnswers+1}/20</h4>
-              <h4>{currentQuestion.questionName}</h4>
+              <h4 id="question-number-progress">Question {this.state.skippedAnswers+this.state.wrongAnswers+this.state.correctAnswers+1}/20</h4>
+              <h2>{currentQuestion.questionName}</h2>
               <ul id="id01">
               <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[0]}</p></li>
               <li><p onClick={this.handleOptionClick}>{currentQuestion.correctAnswer}</p></li>
@@ -276,7 +276,7 @@ if (this.props.quiz.name === "Random Questions"){
                 <div className="options">
                 <h4>Question {this.state.currentQuestionIndex+1}/{this.state.numberOfQuestions}</h4>
 
-                <h4>{currentQuestion.questionName}</h4>
+                <h2>{currentQuestion.questionName}</h2>
                 <ul id="id01">
                 <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[0]}</p></li>
                 <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[1]}</p></li>
@@ -297,7 +297,7 @@ if (this.props.quiz.name === "Random Questions"){
               return (
                 <div className="options">
                 <h4>Question {this.state.currentQuestionIndex+1}/{this.state.numberOfQuestions}</h4>
-                <h4>{currentQuestion.questionName}</h4>
+                <h2>{currentQuestion.questionName}</h2>
                 <ul id="id01">
                 <li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[0]}</p></li>
                 <li><p onClick={this.handleOptionClick}>{currentQuestion.correctAnswer}</p></li>

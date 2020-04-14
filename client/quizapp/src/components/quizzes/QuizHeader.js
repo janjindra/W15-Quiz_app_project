@@ -29,7 +29,7 @@ class QuizHeader extends Component{
     return (
       <Fragment>
 
-      <h1 id="h1-center">Welcome! Let's play a Quiz now.</h1>
+      <h1>Welcome! Let's play a Quiz now.</h1>
 
       </Fragment>
     )
