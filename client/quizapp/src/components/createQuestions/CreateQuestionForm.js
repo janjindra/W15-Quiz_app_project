@@ -162,6 +162,10 @@ class CreateQuestionForm extends Component{
   return(
 
     <div>
+
+    <p> At *Quiz App Name Here* you have the opportunity to contribute to our amazing collection of question!</p>
+    <p> Whether you're looking to add a bit of General Knowledge or show off your intelligence in Mythology, all questions are welcome! </p>
+
     <h1> Create a question: </h1>
     <form onSubmit={this.handleSubmit}>
 
