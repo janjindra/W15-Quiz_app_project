@@ -2,6 +2,10 @@ import React from 'react';
 
 const NavBar = (props) => {
   return(
+    <div>
+    <header>
+    <h1>JPP Quiz App</h1>
+    </header>
     <header>
     <ul>
     <li className="navLink">
@@ -19,6 +23,7 @@ const NavBar = (props) => {
     </ul>
 
     </header>
+    </div>
   )
 }
 
