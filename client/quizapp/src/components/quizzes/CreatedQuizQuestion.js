@@ -156,11 +156,12 @@ class CreatedQuizQuestion extends Component{
 
 
   render(){
-    if(!this.props.quiz) { return null }
+    if(!this.props.quiz) { return null } else {
 
     const {currentQuestion } = this.state;
 
-    if (this.state.currentQuestionIndex<this.state.numberOfQuestions) {
+    if (((this.props.quiz.name !== "Random Questions") && (this.state.currentQuestionIndex<this.state.numberOfQuestions) )
+          || (((this.state.currentQuestionIndex+1) <= 20) && (this.props.quiz.name === "Random Questions"))) {
 
       if (this.state.currentQuestion.incorrectAnswers.length !==1){
 
@@ -209,6 +210,8 @@ class CreatedQuizQuestion extends Component{
     else {
       window.alert("The quiz has ended");
 
+
+
       return(
 
         <Fragment>
@@ -221,12 +224,14 @@ class CreatedQuizQuestion extends Component{
         currentQuestion={this.state.currentQuestion}
         latestUser={this.state.latestUser}/>
         </Fragment>
-
       )
+
+
+
     }
 
   }
-
+}
 }
 
 export default CreatedQuizQuestion;
