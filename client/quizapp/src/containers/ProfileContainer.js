@@ -9,9 +9,6 @@ class ProfileContainer extends Component{
     this.state = {
       user: ""
     }
-
-    // this.handleDelete = this.handleDelete.bind(this);
-    // this.findUserById = this.findProfileById.bind(this);
   }
 
   componentDidMount(){
@@ -27,23 +24,9 @@ class ProfileContainer extends Component{
     const request = new Request();
     request.post('/api/users', user) //is it profile???
     .then( () => {
-      window.location = '/profile'
+      window.location = '/quizzes'
     })
   }
-
-  // findProfileById(id){
-  //   return this.state.user.find((user) => {
-  //     return user.id === parseInt(id);
-  //   });
-  // }
-
-  // handleDelete(id){
-  //   const request = new Request();
-  //   const url = '/api/profile/' + id;
-  //   request.delete(url).then(() => {
-  //     window.location = '/profile'; //re-route to quizzes instead??
-  //   });
-  // }
 
   render(){
     if(!this.state.user){
@@ -54,7 +37,7 @@ class ProfileContainer extends Component{
       <Router>
       <Fragment>
       <Switch>
-      <Route exact path = '/profile' render={() => {
+      <Route exact path = '/login' render={() => {
         return <MyProfileForm onCreate={this.handlePost} />
       }} />
       </Switch>

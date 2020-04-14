@@ -14,11 +14,10 @@ const MainContainer = () => {
       <Fragment>
       <NavBar/>
       <Switch>
-
-      <Route path="/profile" component={ProfileContainer} />
+      <Route path="/login" component={ProfileContainer} />
       <Route path="/quizzes" component={QuizzesContainer}/>
       <Route path="/createQuestions" component={CreateQuestionContainer}/>
-      <Route path="/createQuizzes" component={CreateQuizContainer}/> // comment back in.
+      <Route path="/createQuizzes" component={CreateQuizContainer}/>
       </Switch>
 
 
