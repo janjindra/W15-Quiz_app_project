@@ -17,7 +17,7 @@ handleAgainButton(){
   render(){
 console.log(this.props);
 
-if (this.props.quiz.name==="Random Questions"){
+if ((this.props.quiz) && (this.props.quiz.name==="Random Questions")){
     return(
       <div className="results">
       <h1>Results Page</h1>
@@ -69,8 +69,6 @@ if (this.props.quiz.name==="Random Questions"){
       </div>
 
     )
-
-
 
   }
 

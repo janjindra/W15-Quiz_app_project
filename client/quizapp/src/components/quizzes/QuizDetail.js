@@ -240,7 +240,7 @@ class QuizDetail extends Component{
 					<div className="options">
 						<h4>Question {this.state.currentQuestionIndex+1}/{this.state.numberOfQuestions}</h4>
 
-						<h4>{currentQuestion.questionName}</h4>
+						<h2>{currentQuestion.questionName}</h2>
 						<ul id="id01">
 							<li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[0]}</p></li>
 							<li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[1]}</p></li>
@@ -261,7 +261,7 @@ class QuizDetail extends Component{
 				return (
 					<div className="options">
 						<h4>Question {this.state.currentQuestionIndex+1}/{this.state.numberOfQuestions}</h4>
-						<h4>{currentQuestion.questionName}</h4>
+						<h2>{currentQuestion.questionName}</h2>
 						<ul id="id01">
 							<li><p onClick={this.handleOptionClick}>{currentQuestion.incorrectAnswers[0]}</p></li>
 							<li><p onClick={this.handleOptionClick}>{currentQuestion.correctAnswer}</p></li>
@@ -290,7 +290,8 @@ class QuizDetail extends Component{
 				numberOfQuestions={this.state.numberOfQuestions}
 				currentQuestionIndex={this.state.currentQuestionIndex}
 				currentQuestion={this.state.currentQuestion}
-				latestUser={this.state.latestUser}/>
+				latestUser={this.state.latestUser}
+				quiz={this.props.quiz}/>
 				</Fragment>
 
 			)
