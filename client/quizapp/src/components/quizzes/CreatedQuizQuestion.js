@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import isEmpty from '../../helpers/is-empty';
 import ResultSummary from '../results/ResultSummary';
+import ReactToPrint from 'react-to-print';
 
 class CreatedQuizQuestion extends Component{
   constructor(props){
@@ -242,7 +243,7 @@ if (this.props.quiz.name === "Random Questions"){
 
         //random questions - end quiz and show results
         else {
-          window.alert("The quiz has ended");
+          window.alert("Completed!");
 
           return(
 
@@ -256,7 +257,14 @@ if (this.props.quiz.name === "Random Questions"){
             currentQuestionIndex={this.state.currentQuestionIndex}
             currentQuestion={this.state.currentQuestion}
             latestUser={this.state.latestUser}
-            quiz={this.props.quiz}/>
+            quiz={this.props.quiz}
+            ref={el => (this.componentRef = el)}/>
+
+            <ReactToPrint
+              trigger={() => <a href="#">Print this out!</a>}
+              content={() => this.componentRef}
+            />
+
             </Fragment>
           )
 
@@ -314,7 +322,7 @@ if (this.props.quiz.name === "Random Questions"){
 
           //every other quiz but random questions quiz - end quiz and show results
           else {
-            window.alert("The quiz has ended");
+            window.alert("Completed!");
 
             return(
 
@@ -327,7 +335,13 @@ if (this.props.quiz.name === "Random Questions"){
               currentQuestionIndex={this.state.currentQuestionIndex}
               currentQuestion={this.state.currentQuestion}
               latestUser={this.state.latestUser}
-              quiz={this.props.quiz}/>
+              quiz={this.props.quiz}
+              ref={el => (this.componentRef = el)}/>
+
+              <ReactToPrint
+                trigger={() => <a href="#">Print this out!</a>}
+                content={() => this.componentRef}
+              />
               </Fragment>
             )
 

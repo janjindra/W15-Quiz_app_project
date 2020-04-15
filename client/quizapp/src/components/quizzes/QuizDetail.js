@@ -2,6 +2,7 @@
 import React, {Component, Fragment} from 'react';
 import isEmpty from '../../helpers/is-empty';
 import ResultSummary from '../results/ResultSummary';
+import ReactToPrint from 'react-to-print';
 
 class QuizDetail extends Component{
 	constructor(props){
@@ -278,7 +279,7 @@ class QuizDetail extends Component{
 		}
 
 		else {
-			window.alert("The quiz has ended");
+			window.alert("Completed!");
 
 			return(
 
@@ -291,7 +292,13 @@ class QuizDetail extends Component{
 				currentQuestionIndex={this.state.currentQuestionIndex}
 				currentQuestion={this.state.currentQuestion}
 				latestUser={this.state.latestUser}
-				quiz={this.props.quiz}/>
+				quiz={this.props.quiz}
+				ref={el => (this.componentRef = el)}/>
+
+				<ReactToPrint
+					trigger={() => <a href="#">Print this out!</a>}
+					content={() => this.componentRef}
+				/>
 				</Fragment>
 
 			)
