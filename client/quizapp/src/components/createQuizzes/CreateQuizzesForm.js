@@ -46,15 +46,18 @@ class CreateQuizzesForm extends Component{
   render(){
     return(
       <div>
-
+<br></br><br></br><br></br>
       <p> Give your Quiz a name and a number of questions to get started creating your own Quiz! </p>
       <p> Once created it will now be able to be selected from Quiz play area. </p>
-
-      <h1> Create a quiz: </h1>
+<br></br><br></br>
+      <h1> Create a quiz </h1>
+      <hr></hr>
       <form onSubmit={this.handleSubmit}>
-      <input type="text" placeholder= "name" name="name" onChange={this.handleChange} value={this.state.quiz.name} /><br/>
-      <input type="number" placeholder= "Number Of Questions" name="numberOfQuestions" onChange={this.handleChange} value={this.state.quiz.numberOfQuestions} /><br/>
-      <button type="submit">Save Quiz</button>
+      <label>Enter Quiz Name:</label>
+      <input type="text" placeholder= "Name" name="name" onChange={this.handleChange} value={this.state.quiz.name} /><br/>
+    <label>Number Of Questions:</label>
+      <input type="number" placeholder= "Number of Questions" name="numberOfQuestions" onChange={this.handleChange} value={this.state.quiz.numberOfQuestions} /><br/>
+    <br></br>  <button type="submit">Save Quiz</button>
       </form>
       <div>
         {Array.from({ length: this.state.quiz.numberOfQuestions }, (value, index) => (

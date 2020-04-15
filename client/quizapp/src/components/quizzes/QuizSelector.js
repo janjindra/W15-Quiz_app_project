@@ -39,7 +39,7 @@ function handleChangeCategory(event){
 <br></br><br></br>
     <p className="or">--- OR ---</p>
 
-  
+
     <h4 className="select-quiz-subtitle">Select a quiz by category</h4>
     <button onClick={handleChangeCategory} type="button" value="mythology">Mythology</button>
     <button onClick={handleChangeCategory} type="button" value="sports">Sports</button>
@@ -49,7 +49,7 @@ function handleChangeCategory(event){
     <button onClick={handleChangeCategory} type="button" value="politics">Politics</button>
     <button onClick={handleChangeCategory} type="button" value="art">Art</button>
     <button onClick={handleChangeCategory} type="button" value="geography">Geography</button>
-
+<br></br><br></br><br></br>
     </div>
 
 

@@ -70,7 +70,7 @@ class RightSidebar extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h1>My Chat App</h1>
+          <h2>JPP Chat</h2>
         </div>
         <Messages
           messages={this.state.messages}

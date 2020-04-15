@@ -17,6 +17,7 @@ class CreateQuizContainer extends Component{
   render(){
 
     return(
+      
       <CreateQuizzesForm onCreate={this.handlePost}/>
     )
   }

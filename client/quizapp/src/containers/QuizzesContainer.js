@@ -128,6 +128,8 @@ class QuizzesContainer extends Component{
 
       <div className="quizzes">
 
+
+
       <QuizHeader users={this.state.users[this.state.users.length-1]}/>
 <br></br>
       { (this.state.selectedQuizName==="" && this.state.selectedCategoryName==="") ? <QuizSelector quizzes={this.state.quizzes} onQuizSelected={this.handleQuizSelected} onCategorySelected={this.handleCategorySelected}/> : null }
@@ -135,6 +137,11 @@ class QuizzesContainer extends Component{
       <QuizDetail users={this.state.users} quiz={selectedQuiz} mythology={this.state.mythology} sports={this.state.sports} generalKnowledge={this.state.generalKnowledge} history={this.state.history} animals={this.state.animals} geography={this.state.geography} art={this.state.art} politics={this.state.politics} category={selectedCategory}  />
 
       <CreatedQuizQuestion users={this.state.users} quiz={selectedQuiz}/>
+<br></br><br></br>
+
+{ (this.state.selectedQuizName==="" && this.state.selectedCategoryName==="") ? <img src="https://pngimage.net/wp-content/uploads/2018/06/quiz-png-3.png" alt="" width="500" /> : null }
+
+
 
 
 </div>

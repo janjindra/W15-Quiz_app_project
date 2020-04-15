@@ -45,6 +45,11 @@ line-height: 80px;
     list-style-type: none;
 }
 
+h3 {
+  margin: 0px;
+  font-style: normal;
+}
+
 .or {
 color: grey;
 font-size: 12px;
@@ -85,12 +90,12 @@ padding: 0px 10%;
   display: inline;
   align-self: center;
 }
- .quiz-select{
+select{
 font-size: 16px;
 background-color: lightgrey;
 border: grey;
 border-radius: 0px;
-width: 500px;
+width: 200px;
 height: 30px;
 overflow: hidden;
 padding: .8rem 3rem .8rem .5rem;
@@ -131,7 +136,9 @@ display: inline;
     }
 
     #center {
-      border: black 1px solid;
+      /* border: black 1px solid; */
+      border-bottom: black 1px solid;
+      /* border-top: black 1px solid; */
       padding: 0;
       display: flex;
       /* flex-wrap: wrap; */
@@ -140,12 +147,17 @@ display: inline;
       position: relative;
       text-align:center;
       display: inline;
+      overflow: auto;
+      height: 653px;
+
     }
 
     #right-side-bar {
       overflow: scroll;
-      border: black 1px solid;
-      height: 650px;
+      border-left: black 1px solid;
+      border-bottom: black 1px solid;
+      /* height: 648px; */
+      height: 100%;
       width: 20%;
       text-align:center;
       display: inline;
@@ -153,6 +165,7 @@ display: inline;
       /* display: flex; */
       /* flex-wrap: wrap; */
       justify-content: space-evenly;
+
     }
 
     #app {
@@ -220,7 +233,7 @@ body {
 
     .sidebar-list-li {
       font-size: 16px;
-      border-bottom: 1px solid #fff;
+      border-bottom: 1px solid ;
       transition: all 0.25s ease;
       animation: fadeInRight .25s ease forwards;
       opacity:0;
@@ -274,7 +287,7 @@ body {
       height: 80px;
       display: flex;
       align-items: center;
-      /* box-shadow: 0 0 10px 0 black; */
+      box-shadow: 0 0 10px 0 black;
     padding: 0;
     margin: 0;
   }
@@ -306,9 +319,11 @@ header li a:hover {
   }
 
   form{
-    border: 1px solid;
+    /* border: 1px solid; */
     padding: 5px;
-    width: 30%;
+    width: 90%;
+    height: 100%;
+    /* line-height: 653px; */
   }
 
   input[type=text], select, textarea{

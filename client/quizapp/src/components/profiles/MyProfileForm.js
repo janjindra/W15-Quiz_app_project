@@ -32,18 +32,20 @@ handleSubmit(event){
 render(){
   return (
     <div>
-    <p> Welcome to our Quiz App, create an account below and get into playing Quizzes right away!</p>
-    <h1> Create an account: </h1>
+    <br></br><br></br><br></br><br></br>
+    <p> Welcome to our Quiz App, create an account below and get into playing Quizzes right away!</p><br></br><br></br>
+    <h1> Create an account </h1>
+    <hr></hr>
     <form onSubmit={this.handleSubmit}>
     <label>Enter first name:</label>
     <input type="text" placeholder= "First Name" name="firstName" onChange={this.handleChange} value={this.state.user.firstName} /><br/>
     <label>Enter last name:</label>
     <input type="text" placeholder= "Last Name" name="lastName" onChange={this.handleChange} value={this.state.user.lastName} /><br/>
     <label>Enter email:</label>
-    <input type="text" placeholder= "email" name="email" onChange={this.handleChange} value={this.state.user.email} /><br/>
+    <input type="text" placeholder= "Email" name="email" onChange={this.handleChange} value={this.state.user.email} /><br/>
     <label>Enter a picture:</label>
-    <input type="text" placeholder= "url" name="url" onChange={this.handleChange} value={this.state.user.url} /><br/>
-    <button type="submit">Create and Login</button>
+    <input type="text" placeholder= "URL" name="url" onChange={this.handleChange} value={this.state.user.url} /><br/>
+    <br></br><button type="submit">Create and Login</button>
     </form>
     </div>
   )

@@ -33,6 +33,7 @@ class LeftSidebar extends Component {
     return (
       <div>
         <div className={this.state.style}>
+        
           <ul className="sidebar-list-ul">
             {navLinks.map(({ url, name }) => (
               <li className="sidebar-list-li">

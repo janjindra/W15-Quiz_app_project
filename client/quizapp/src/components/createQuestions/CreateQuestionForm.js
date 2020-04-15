@@ -121,7 +121,7 @@ class CreateQuestionForm extends Component{
       return(
         <div>
       <label>Enter the incorrect answer:</label>
-      <input type="text" placeholder="incorrectAnswers" name="incorrectAnswers" onChange={this.handleIncorrect1Change} value={this.state.incorrect1}/>
+      <input type="text" placeholder="Incorrect Answer" name="incorrectAnswers" onChange={this.handleIncorrect1Change} value={this.state.incorrect1}/>
       </div>
     )
     }
@@ -129,10 +129,10 @@ class CreateQuestionForm extends Component{
     MultipleChoiceReturn() {
       return(
         <div>
-      <label>Enter the incorrect answers:</label>;
-      <input type="text" placeholder="incorrectAnswers" name="incorrectAnswers" onChange={this.handleIncorrect1Change} value={this.state.incorrect1}/>
-      <input type="text" placeholder="incorrectAnswers" name="incorrectAnswers" onChange={this.handleIncorrect2Change} value={this.state.incorrect2}/>
-      <input type="text" placeholder="incorrectAnswers" name="incorrectAnswers" onChange={this.handleIncorrect3Change} value={this.state.incorrect3}/>
+      <label>Enter the incorrect answers:</label>
+      <input type="text" placeholder="Incorrect Answer 1" name="incorrectAnswers" onChange={this.handleIncorrect1Change} value={this.state.incorrect1}/>
+      <input type="text" placeholder="Incorrect Answer 2" name="incorrectAnswers" onChange={this.handleIncorrect2Change} value={this.state.incorrect2}/>
+      <input type="text" placeholder="Incorrect Answer 3" name="incorrectAnswers" onChange={this.handleIncorrect3Change} value={this.state.incorrect3}/>
       <br/>
     </div>
     )
@@ -162,11 +162,10 @@ class CreateQuestionForm extends Component{
   return(
 
     <div id="questionForm">
-
-    <p> At *Quiz App Name Here* you have the opportunity to contribute to our amazing collection of question!</p>
-    <p> Whether you're looking to add a bit of General Knowledge or show off your intelligence in Mythology, all questions are welcome! </p>
-
-    <h1> Create a question: </h1>
+<br></br><br></br>
+  
+    <h1> Create a question </h1>
+    <hr/><br></br>
     <form className="question-form" onSubmit={this.handleSubmit}>
 
     <label>Choose a category:</label>
@@ -202,10 +201,10 @@ class CreateQuestionForm extends Component{
         </select> <br/>
 
     <label>Enter your question:</label>
-    <input type="text" placeholder="questionName" name="questionName" onChange={this.handleChange} value={this.state.question.questionName}/><br/>
+    <input type="text" placeholder="Question" name="questionName" onChange={this.handleChange} value={this.state.question.questionName}/><br/>
 
     <label>Enter the correct answer:</label>
-    <input type="text" placeholder="correctAnswer" name="correctAnswer" onChange={this.handleChange} value={this.state.question.correctAnswer}/><br/>
+    <input type="text" placeholder="Correct Answer" name="correctAnswer" onChange={this.handleChange} value={this.state.question.correctAnswer}/><br/>
 
 
     {this.TypeChoiceReturn()}
@@ -219,7 +218,7 @@ class CreateQuestionForm extends Component{
         </select> <br/>
       </>
     }
-
+<br></br>
         <button type="submit">Add Question!</button>
     </form>
     </div>

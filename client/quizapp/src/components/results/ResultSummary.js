@@ -35,10 +35,10 @@ if ((this.props.quiz) && (this.props.quiz.name==="Random Questions")){
       <li className="r-item"><p id="results-item">Number of Wrong Answers: {this.props.wrongAnswers}</p></li>
       <li className="r-item"><p id="results-item">Number of Skipped Answers: {this.props.skippedAnswers}</p></li>
 
-      </ul>
+      </ul><br></br><br></br>
 
-      <button onClick={this.handleAgainButton} type="button"><h4>Play Again</h4></button>
-      <button onClick={this.handleAgainButton} type="button"><h4>Home</h4></button>
+      <button onClick={this.handleAgainButton} type="button"><h3>Play Again</h3></button>
+      <button onClick={this.handleAgainButton} type="button"><h3>Home</h3></button>
       <br></br><br></br>
       </div>
 
@@ -61,10 +61,10 @@ if ((this.props.quiz) && (this.props.quiz.name==="Random Questions")){
       <li className="r-item"><p id="results-item">Number of Wrong Answers: {this.props.wrongAnswers}</p></li>
       <li className="r-item"><p id="results-item">Number of Skipped Answers: {parseInt(this.props.numberOfQuestions)-parseInt(this.props.numberOfAnsweredQuestions)}</p></li>
 
-      </ul>
+      </ul><br></br><br></br>
 
-      <button onClick={this.handleAgainButton} type="button"><h4>Play Again</h4></button>
-      <button onClick={this.handleAgainButton} type="button"><h4>Home</h4></button>
+      <button onClick={this.handleAgainButton} type="button"><h3>Play Again</h3></button>
+      <button onClick={this.handleAgainButton} type="button"><h3>Home</h3></button>
       <br></br><br></br>
       </div>
 
