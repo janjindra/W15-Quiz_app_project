@@ -22,7 +22,7 @@ if ((this.props.quiz) && (this.props.quiz.name==="Random Questions")){
       <div className="results">
       <h1>Results Page</h1>
 
-      <img src="/public/css/tick.png" alt="" width="100" />
+      <img src="images/tick.png" alt="" width="100" />
       <h3>Hello {this.props.latestUser.firstName} {this.props.latestUser.lastName},</h3>
        <h3>Congratulations - you made it!</h3>
       <h2>Your Result: {Math.round((parseInt(this.props.correctAnswers)/20)*100)}%</h2>
@@ -48,7 +48,7 @@ if ((this.props.quiz) && (this.props.quiz.name==="Random Questions")){
       <div className="results">
       <h1>Results Page</h1>
 
-      <img src="/public/css/tick.png" alt="" width="100" />
+      <img src="images/tick.png" alt="" width="100" />
       <h3>Hello {this.props.latestUser.firstName} {this.props.latestUser.lastName},</h3>
        <h3>Congratulations - you made it!</h3>
        <h2>Your Result: {Math.round((parseInt(this.props.correctAnswers)/parseInt(this.props.numberOfQuestions))*100)}%</h2>
