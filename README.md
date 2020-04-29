@@ -7,7 +7,7 @@ The Quiz App allows you to play an already created quiz or play a randomly gener
 The project is built using:
 * HTML / CSS
 * JavaScript & Java
-* Java React(front-end)
+* JS React(front-end)
 * Java Spring, H2 database (back-end)
 * Additional libraries used: react-sidebar, react-to-print
 
